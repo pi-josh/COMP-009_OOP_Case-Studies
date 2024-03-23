@@ -1,5 +1,5 @@
 <h1>COMP 009 - Object Oriented Programming</h1>
-<h2>A repository to be used in collaborating for our Case Study #1</h2>
+A repository to be used in collaborating for our Case Study #1
 
 <h3>Group Members:</h3>
 <ul>
