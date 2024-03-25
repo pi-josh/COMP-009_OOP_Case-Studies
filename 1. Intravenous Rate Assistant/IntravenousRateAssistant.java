@@ -45,18 +45,20 @@ public class IntravenousRateAssistant {
 
 	// Raf
 	public static void getUnitsConc() {
+		//initializaition and declarations
 		int rateph = 0;
 		int conc = 0;
 		int totalrate;
 		Scanner in = new Scanner(System.in);
-
+		
+		//user input
 		System.out.print("Enter rate in units/hr=> ");
 		rateph = in.nextInt();
 		System.out.print("Enter concentration in units/ml=> ");
 		conc = in.nextInt();
-		totalrate = rateph / conc;
-
-		return totalrate;
+		totalrate = rateph / conc; //calculation
+		
+		return totalrate; //returning value
 	}
 
 	// Cas
