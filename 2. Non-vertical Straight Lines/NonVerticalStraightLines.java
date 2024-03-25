@@ -15,7 +15,7 @@ public class NonVerticalStraightLines {
 
 	// Josh
 	public static void getProblem() {
-
+		
 	}
 
 	// Raf
