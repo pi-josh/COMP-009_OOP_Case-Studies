@@ -89,8 +89,8 @@ public class IntravenousRateAssistant {
 	}
 
 	// Cas
-	public static void figDropsPerMin() {
-
+	public static double figDropsPerMin(double rate, double drop) {
+		return rate * drop / 60.0;
 	}
 
 	// Dom
@@ -99,8 +99,8 @@ public class IntravenousRateAssistant {
 	}
 
 	// Cas
-	public static void byWeight() {
-
+	public static double byWeight(double rate, double weight, double concentration) {
+		return rate * weight * concentration;     
 	}
 
 	// Dom
