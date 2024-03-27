@@ -1,9 +1,10 @@
 /**
- * Documentation here
+ * The IntravenousRateAssistant program implements an application that
+ * assist with the calculation of intravenous rates. It allows user
+ * interaction with the command line interface to ask the assistant
+ * in solving various problems limited to the choices prompted.
  * 
- * 
- * 
- * 
+ *  @author Cassidy Fernandez, Dominic Syd Aldas, Joshua Macatunao, Rafael Lafuente
  */
 
 // Note: Functions name and return type are subject to change later
@@ -11,6 +12,11 @@
 import java.util.Scanner;
 
 public class IntravenousRateAssistant {
+
+	/**
+	 * This is the main method which run the application
+	 * and make use of ... 
+	 */
 	public static void main(String[] args) {
 		/*
 		 Calling the getProblem function
@@ -38,11 +44,21 @@ public class IntravenousRateAssistant {
 	}
 
 	// Raf
+	/**
+	 * This method is used to get the problem that will be chosen by the user.
+	 * The integer variable choice will be used as the placeholder of the value
+	 * that will be chosen by the user. It is initialized with a value of -1
+	 * to make sure that there would be a return value.
+	 * A try-catch is used to make sure that the program won't stop when the user
+	 * inputs an invalid integer.
+	 * 
+	 * @return int This return the integer value that corresponds to the chosen problem
+	 */
 	public static int getProblem() {
 		int choice = -1; // Variable to store the choice of the user
 		Scanner in = new Scanner(System.in); // Scanner method named in to get the input from the user
 
-		// Keep prompting the user for choices until they give a valid input
+		// Prompt the user for choices and make sure they give a valid input
 		System.out.print("Enter the number of the problem you wish to solve.\n"
 					 + "\tGIVEN A MEDICAL ORDER IN\t\tCALCULATE RATE IN\n"
 					 + "(1)\tml/hr & tubing drop factor\t\tdrops / min\n"
