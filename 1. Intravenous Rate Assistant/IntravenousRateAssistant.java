@@ -20,7 +20,6 @@ public class IntravenousRateAssistant {
 
 	/**
 	 * This is the main method which run the application
-	 * and make use of ... 
 	 */
 	public static void main(String[] args) {
 
@@ -36,33 +35,23 @@ public class IntravenousRateAssistant {
 			// Calling the function based on the choice of the user
 			switch(choice) {
 				case 1:
-					// Initial declaration of the actual parameters
+					/*
+					 Initial declaration of the variables needed for problem 1
+					 which will also serve as an actual parameters
+					*/
 					int mlPerHrRate, dropFactor;
+					int[] rateAndDropFactor = new int[2];
 
-					// Keep prompting until the user input a valid integer
-					while(true) {
-						try {
-							// Prompting the user for the rate in milliliter per hour
-							System.out.print("Enter rate in ml/hr => ");
-							mlPerHrRate = in.nextInt();
-
-							// Prompting the user for the tubing's drop factor
-							System.out.print("Enter tubing's drop factor (drops/ml) => ");
-							dropFactor = in.nextInt();
-
-							break;
-						} catch (Exception err) {
-							in.next(); // string buffer here to avoid infinite loop
-							System.err.println("Please input a valid integer!");
-							System.err.println(err);
-						}
-					}
+					// Getting the values of each variables
+					rateAndDropFactor = getRateDropFactor();
+					mlPerHrRate = rateAndDropFactor[0];
+					dropFactor = rateAndDropFactor[1];
 
 					/*
-					 Passing the actual paramaters to the getRateDropFactor function
+					 Passing the actual paramaters to the figDropMin function
 					 and storing it in a variable to be used in displaying the result
 					*/
-					int result = getRateDropFactor(mlPerHrRate, dropFactor);
+					int result = figDropsPerMin(mlPerHrRate, dropFactor);
 					System.out.printf("The drop rate per minute is %d.\n\n", result);
 
 					break;
@@ -115,20 +104,28 @@ public class IntravenousRateAssistant {
 
 	// Josh
 	/**
-	 * This method is used to get the drop rate per minute.
-	 * This method will multiply the milliliters per hour rate by tubing's drop factor
-	 * and dividing by 60 to convert to get the drop rate per minute
-	 * since 1 hour is equivalent to 60 minutes.
+	 * This method is prompts the user to enter the data required for problem 1,
+	 * and sends this data back to the calling module via output parameters.
 	 * 
-	 * @param mlPerHrRate is the first parameter for the getRateDropFactor method
-	 * @param dropFactor is the second parameter for the getRateDropFactor method
-	 * @return int This return the value of drop rate per minute.
+	 * @return int This return an array of two values: rate and drop factor.
 	 */
-	public static int getRateDropFactor(int mlPerHrRate, int dropFactor) {
-		// Using Math.round method to make sure the integer value is rounded off to the nearest tenth
-		int dropRatePerMin = (int) Math.round((mlPerHrRate * dropFactor) / 60.0);
-		
-		return dropRatePerMin;
+	public static int[] getRateDropFactor() {
+		// Prompting the user for the tubing's drop factor until they input a valid integer
+		while(true) {
+			try {
+				System.out.print("Enter rate in ml/hr => ");
+				int mlPerHrRate = in.nextInt();
+
+				System.out.print("Enter tubing's drop factor (drops/ml) => ");
+				int dropFactor = in.nextInt();
+
+				return new int[] {mlPerHrRate, dropFactor};
+			} catch (Exception err) {
+				in.next(); // string buffer here to avoid infinite loop
+				System.err.println("Please input a valid integer!");
+				System.err.println(err);
+			}
+		} 
 	}
 
 	// Josh
@@ -138,29 +135,41 @@ public class IntravenousRateAssistant {
 
 	// Raf
 	public static int getUnitsConc() {
-		//initializaition and declarations
-		int rateph = 0;
-		int conc = 0;
-		int totalrate;
+		// Initialization and declarations of variable
+		int ratePh = 0;
+		int concentration = 0;
+		int totalRate;
 		
 		//user input
 		System.out.print("Enter rate in units/hr=> ");
-		rateph = in.nextInt();
+		ratePh = in.nextInt();
 		System.out.print("Enter concentration in units/ml=> ");
-		conc = in.nextInt();
-		totalrate = rateph / conc; //calculation
+		concentration = in.nextInt();
+		totalRate = ratePh / concentration; //calculation
 		
-		return totalrate; //returning value
+		return totalRate; //returning value
 	}
 
 	// Cas
-	public static double figDropsPerMin(int rate, int drop) {
-		return rate * drop / 60.0;           
+	/**
+	 * This method is used to get the drop rate per minute.
+	 * This method will multiply the milliliters per hour rate by tubing's drop factor
+	 * and dividing by 60 to convert to get the drop rate per minute
+	 * since 1 hour is equivalent to 60 minutes.
+	 * 
+	 * @param mlPerHrRate is the first parameter for the getRateDropFactor method
+	 * @param dropFactor is the second parameter for the getRateDropFactor method
+	 * @return int This return the value of drop rate per minute.
+	 */
+	public static int figDropsPerMin(int mlPerHrRate, int dropFactor) {
+		int dropRatePerMin = (int)Math.round(mlPerHrRate * dropFactor / 60.0);
+
+		return dropRatePerMin;           
 	}
 
 	// Dom
-	public static void figMlPerHour() {
-
+	public static int figMlPerHour() {
+		return 1;
 	}
 
 	// Cas
