@@ -57,11 +57,22 @@ public class IntravenousRateAssistant {
 					break;
 				case 2:
 					/*
-					 Prompting the user for the number of hours
+					 Prompting the user for the number of hours until they input a valid integer
 					 and will be used as the actual parameter for figMlPerHour method
 					*/
-					System.out.print("Enter number of hours => ");
-                	int hours = in.nextInt();
+					int hours;
+					while(true) {
+						try {
+							System.out.print("Enter number of hours => ");
+	                		hours = in.nextInt();
+
+	                		break;
+						} catch (Exception err) {
+							in.next(); // string buffer here to avoid infinite loop
+							System.err.println("\nPlease input a valid integer!");
+							System.err.println(err + "\n");
+						}
+					}
 
                 	/*
 					 Passing the actual paramaters to the figDropMin function
