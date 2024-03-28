@@ -7,8 +7,6 @@
  *  @author Cassidy Fernandez, Dominic Syd Aldas, Joshua Macatunao, Rafael Lafuente
  */
 
-// Note: Functions name and return type are subject to change later
-
 import java.util.Scanner;
 
 public class IntravenousRateAssistant {
@@ -22,17 +20,16 @@ public class IntravenousRateAssistant {
 	 * This is the main method which run the application
 	 */
 	public static void main(String[] args) {
-
 		/*
 		 Calling the getProblem function
 		 and storing the integer value that corresponds to the chosen problem
 		 until the user input a valid integer or chooses to exit
 		 */
 		int choice = -1;
-		int result; // Placeholder for the resulting values
+		int result; // Placeholder for the returning values 
 
 		System.out.println("++++++++++++++++++++ INTRAVENOUS RATE ASSISTANT ++++++++++++++++++++");
-		
+
 		do {
 			choice = getProblem();
 
@@ -57,9 +54,21 @@ public class IntravenousRateAssistant {
 					*/
 					result = figDropsPerMin(mlPerHrRate, dropFactor);
 					System.out.printf("The drop rate per minute is %d.\n\n", result);
-
 					break;
 				case 2:
+					/*
+					 Prompting the user for the number of hours
+					 and will be used as the actual parameter for figMlPerHour method
+					*/
+					System.out.print("Enter number of hours => ");
+                	int hours = in.nextInt();
+
+                	/*
+					 Passing the actual paramaters to the figDropMin function
+					 and storing it in a variable to be used in displaying the result
+					*/
+                	result = figMlPerHour(hours);
+                	System.out.printf("The rate in milliliters per hour is %d.\n\n", result);
 					break;
 				case 3:
 					/*
@@ -207,7 +216,7 @@ public class IntravenousRateAssistant {
 	}
 
 
-  /**
+  	/**
 	 * This method prompts the user to enter the data required for problem 4
 	 * and sends this data back to the calling module via output parameters.
 	 * 
@@ -242,8 +251,8 @@ public class IntravenousRateAssistant {
 	 * and dividing by 60 to convert to get the drop rate per minute
 	 * since 1 hour is equivalent to 60 minutes.
 	 * 
-	 * @param mlPerHrRate is the first parameter for the getRateDropFactor method
-	 * @param dropFactor is the second parameter for the getRateDropFactor method
+	 * @param mlPerHrRate is the milliliter per hour rate and the first parameter for the figDropsPerMin method
+	 * @param dropFactor is the tubing's drop factor and the second parameter for the figDropsPerMin method
 	 * @return int This return the value of drop rate per minute.
 	 */
 	public static int figDropsPerMin(int mlPerHrRate, int dropFactor) {
@@ -252,9 +261,18 @@ public class IntravenousRateAssistant {
 		return dropRatePerMin;           
 	}
 
-	// Dom
-	public static int figMlPerHour() {
-		return 1;
+
+	/**
+	 * This method is used to get the mililiters per number of hours.
+	 * Calculates the user inputted hours into ml by dividing 1000 (converted 1Liter to mililiters)
+	 * to the number of hours inputted (result/ quotient will be stored to 'rate')
+	 * 
+	 * @param hours is the number of hours inputted and the only parameter for figMlPerHour method
+	 */
+	public static int figMlPerHour(int hours) {
+		int rate = 1000 / hours;
+		
+		return rate;
 	}
 
 
@@ -265,9 +283,9 @@ public class IntravenousRateAssistant {
 	 * and returns ml/hr (rounded) as function value.
 	 * The paramaters will be multiplied by each other to get the return value.
 	 * 
-	 * @param rate is the first parameter for the rate in mg/kg/hr
-	 * @param patientWeight is the second parameter for the patient weight in kg
-	 * @param drugConc is the third paramater for the concentration of drug in mg/ml
+	 * @param rate is the rate in mg/kg/hr and the first parameter for the byWeight method
+	 * @param patientWeight is the patient weight in kg and the second parameter for the byWeight method 
+	 * @param drugConc is the concentration of drug in mg/ml and the third paramater for the byWeight method 
 	 * @return int This return the value of the ml/hr.
 	 */
 	public static int byWeight(double rate, double patientWeight, double drugConc) {
@@ -276,8 +294,19 @@ public class IntravenousRateAssistant {
 	  	return mlPerHrRate;
 	}
 
-	// Dom
+
+	/**
+	 * This method takes input parameters rate in units/hr and concentration in units/ml
+	 * Calculates the total rate in mililiters per hour by
+	 * dividing units/hr('unitsPerHrRate') to units/ml(concentration)
+	 * 
+	 * @param unitsPerHrRate is the rate in units/hr and first parameter for the byUnits method
+	 * @param concentration is the concentration in units and second parameter for the byUnits method
+	 * @return int This returns ml/hr (rounded).
+	 */
 	public static int byUnits(int unitsPerHrRate, int concentration) {
-		return -1;
+		int totalRate = (int)Math.round(unitsPerHrRate / concentration);
+		
+		return totalRate;
 	}
 }
