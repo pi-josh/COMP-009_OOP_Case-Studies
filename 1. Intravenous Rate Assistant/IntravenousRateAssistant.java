@@ -1,80 +1,87 @@
+/**
+ * The IntravenousRateAssistant program implements an application that
+ * assist with the calculation of intravenous rates. It allows user
+ * interaction with the command line interface to ask the assistant
+ * in solving various problems limited to the choices prompted.
+ * 
+ *  @author Cassidy Fernandez, Dominic Syd Aldas, Joshua Macatunao, Rafael Lafuente
+ */
+
+import java.util.Scanner;
+
+public class IntravenousRateAssistant {
+	/*
+	 Scanner method named in to get the input from the user
+	 to be used all throughout the program
+	*/
+	static Scanner in = new Scanner(System.in);
 
 	/**
-	 * The IntravenousRateAssistant program implements an application that
-	 * assist with the calculation of intravenous rates. It allows user
-	 * interaction with the command line interface to ask the assistant
-	 * in solving various problems limited to the choices prompted.
-	 * 
-	 *  @author Cassidy Fernandez, Dominic Syd Aldas, Joshua Macatunao, Rafael Lafuente
+	 * This is the main method which run the application
 	 */
-
-	// Note: Functions name and return type are subject to change later
-
-	import java.util.Scanner;
-
-	public class IntravenousRateAssistant {
+	public static void main(String[] args) {
 		/*
-		Scanner method named in to get the input from the user
-		all throughout the program
-		*/
-		static Scanner in = new Scanner(System.in);
-
-		/**
-		 * This is the main method which run the application
+		 Calling the getProblem function
+		 and storing the integer value that corresponds to the chosen problem
+		 until the user input a valid integer or chooses to exit
 		 */
-
-		public static void main(String[] args) {
-
 		int choice = -1;
-		int result; // Placeholder for the resulting values
+		int result; // Placeholder for the returning values 
 
 		System.out.println("++++++++++++++++++++ INTRAVENOUS RATE ASSISTANT ++++++++++++++++++++");
 
-			/*
-			Calling the getProblem function
-			and storing the integer value that corresponds to the chosen problem
-			until the user input a valid integer or chooses to exit
-			*/
-			int choice = -1;
-			do {
-				
+		do {
 			choice = getProblem();
 
-				// Calling the function based on the choice of the user
-				switch(choice) {
-					case 1:
-						/*
-						Initial declaration of the variables needed for problem 1
-						which will also serve as an actual parameters
-						*/
-						int mlPerHrRate, dropFactor;
-						int[] rateAndDropFactor = new int[2];
+			// Calling the function based on the choice of the user
+			switch(choice) {
+				case 1:
+					/*
+					 Initial declaration of the variables needed for problem 1
+					 which will also serve as an actual parameters
+					*/
+					int mlPerHrRate, dropFactor;
+					int[] rateAndDropFactor = new int[2];
 
-						// Getting the values of each variables
-						rateAndDropFactor = getRateDropFactor();
-						mlPerHrRate = rateAndDropFactor[0];
-						dropFactor = rateAndDropFactor[1];
+					// Getting the values of each variables
+					rateAndDropFactor = getRateDropFactor();
+					mlPerHrRate = rateAndDropFactor[0];
+					dropFactor = rateAndDropFactor[1];
+
 					/*
 					 Passing the actual paramaters to the figDropMin function
 					 and storing it in a variable to be used in displaying the result
 					*/
 					result = figDropsPerMin(mlPerHrRate, dropFactor);
 					System.out.printf("The drop rate per minute is %d.\n\n", result);
-
-						/*
-						Passing the actual paramaters to the figDropMin function
-						and storing it in a variable to be used in displaying the result
-						*/
-						int result = figDropsPerMin(mlPerHrRate, dropFactor);
-						System.out.printf("The drop rate per minute is %d.\n\n", result);
-
-						break;
-					case 2:
-						System.out.print("Enter number of hours => ");
-                    	int hours = in.nextInt();
-                    	figMlPerHour(hours);
 					break;
-					case 3:
+				case 2:
+					/*
+					 Prompting the user for the number of hours until they input a valid integer
+					 and will be used as the actual parameter for figMlPerHour method
+					*/
+					int hours;
+					while(true) {
+						try {
+							System.out.print("Enter number of hours => ");
+	                		hours = in.nextInt();
+
+	                		break;
+						} catch (Exception err) {
+							in.next(); // string buffer here to avoid infinite loop
+							System.err.println("\nPlease input a valid integer!");
+							System.err.println(err + "\n");
+						}
+					}
+
+                	/*
+					 Passing the actual paramaters to the figDropMin function
+					 and storing it in a variable to be used in displaying the result
+					*/
+                	result = figMlPerHour(hours);
+                	System.out.printf("The rate in milliliters per hour is %d.\n\n", result);
+					break;
+				case 3:
 					/*
 					 Initial declaration of the variables needed for problem 3
 					 which will also serve as an actual parameters
@@ -95,7 +102,7 @@
 					result = byWeight(rate, patientWeight, drugConc);
 					System.out.printf("The rate in milliliters per hour is %d.\n\n", result);
 					break;
-					case 4:
+				case 4:
 					/*
 					 Initial declaration of the variables needed for problem 4
 					 which will also serve as an actual parameters
@@ -112,10 +119,10 @@
 					 Passing the actual paramaters to the byUnits function
 					 and storing it in a variable to be used in displaying the result
 					*/
-					result = byUnits(ratePh, concentration);
+					result = byUnits(unitsPerHrRate, concentration);
 					System.out.printf("The rate in milliliters per hour is %d.\n\n", result);
 					break;
-					case 5:
+				case 5:
 					System.out.println("++++++++++++++++++++++++ THANK YOU FOR USING +++++++++++++++++++++++");
 					break;
 			}
@@ -152,9 +159,12 @@
 			in.next(); // string buffer here to avoid infinite loop
 			System.err.println("\nPlease input a valid integer!");
 			System.err.println(err + "\n");
-
 		}
-	}	
+		
+		return choice;
+	}
+
+
 	/**
 	 * This method prompts the user to enter the data required for problem 1,
 	 * and sends this data back to the calling module via output parameters.
@@ -175,82 +185,13 @@
 				int dropFactor = in.nextInt();
 
 				return new int[] {mlPerHrRate, dropFactor}; 	// returning values
->>>>>>> main
 			} catch (Exception err) {
 				in.next(); // string buffer here to avoid infinite loop
 				System.err.println("\nPlease input a valid integer!");
 				System.err.println(err + "\n");
 			}
-			
-			return choice;
-		}
-
-		// Josh
-		/**
-		 * This method is prompts the user to enter the data required for problem 1,
-		 * and sends this data back to the calling module via output parameters.
-		 * 
-		 * @return int This return an array of two values: rate and drop factor.
-		 */
-		public static int[] getRateDropFactor() {
-			// Prompting the user for the tubing's drop factor until they input a valid integer
-			while(true) {
-				try {
-					System.out.print("Enter rate in ml/hr => ");
-					int mlPerHrRate = in.nextInt();
-
-					System.out.print("Enter tubing's drop factor (drops/ml) => ");
-					int dropFactor = in.nextInt();
-
-					return new int[] {mlPerHrRate, dropFactor};
-				} catch (Exception err) {
-					in.next(); // string buffer here to avoid infinite loop
-					System.err.println("Please input a valid integer!");
-					System.err.println(err);
-				}
-			} 
-		}
-
-		// Josh
-		public static void getKgRateConc() {
-
-		}
-
-		// Raf
-		public static int getUnitsConc() {
-			// Initialization and declarations of variable
-			int ratePh = 0;
-			int concentration = 0;
-			int totalRate;
-			
-			//user input
-			System.out.print("Enter rate in units/hr=> ");
-			ratePh = in.nextInt();
-			System.out.print("Enter concentration in units/ml=> ");
-			concentration = in.nextInt();
-			totalRate = ratePh / concentration; //calculation
-			
-			return totalRate; //returning value
-		}
-
-		// Cas
-		/**
-		 * This method is used to get the drop rate per minute.
-		 * This method will multiply the milliliters per hour rate by tubing's drop factor
-		 * and dividing by 60 to convert to get the drop rate per minute
-		 * since 1 hour is equivalent to 60 minutes.
-		 * 
-		 * @param mlPerHrRate is the first parameter for the getRateDropFactor method
-		 * @param dropFactor is the second parameter for the getRateDropFactor method
-		 * @return int This return the value of drop rate per minute.
-		 */
-		public static int figDropsPerMin(int mlPerHrRate, int dropFactor) {
-			int dropRatePerMin = (int)Math.round(mlPerHrRate * dropFactor / 60.0);
-
-			return dropRatePerMin;           
-		}
-
-		
+		} 
+	}
 
 
 	/**
@@ -286,7 +227,7 @@
 	}
 
 
-  /**
+  	/**
 	 * This method prompts the user to enter the data required for problem 4
 	 * and sends this data back to the calling module via output parameters.
 	 * 
@@ -321,8 +262,8 @@
 	 * and dividing by 60 to convert to get the drop rate per minute
 	 * since 1 hour is equivalent to 60 minutes.
 	 * 
-	 * @param mlPerHrRate is the first parameter for the getRateDropFactor method
-	 * @param dropFactor is the second parameter for the getRateDropFactor method
+	 * @param mlPerHrRate is the milliliter per hour rate and the first parameter for the figDropsPerMin method
+	 * @param dropFactor is the tubing's drop factor and the second parameter for the figDropsPerMin method
 	 * @return int This return the value of drop rate per minute.
 	 */
 	public static int figDropsPerMin(int mlPerHrRate, int dropFactor) {
@@ -331,18 +272,20 @@
 		return dropRatePerMin;           
 	}
 
-	// Dom
+
 	/**
 	 * This method is used to get the mililiters per number of hours.
-	 * The method will get the user to input the number of hours (stores to 'hours' variable).
 	 * Calculates the user inputted hours into ml by dividing 1000 (converted 1Liter to mililiters)
 	 * to the number of hours inputted (result/ quotient will be stored to 'rate')
-	 * Ouputs the result through 'rate'
+	 * 
+	 * @param hours is the number of hours inputted and the only parameter for figMlPerHour method
 	 */
-	public static void figMlPerHour(int hours) {
+	public static int figMlPerHour(int hours) {
 		int rate = 1000 / hours;
-		System.out.println("The rate in milliliters per hour is " + rate + ".\n\n");
+		
+		return rate;
 	}
+
 
 	/**
 	 * This method is used to get the milliliter per hour.
@@ -351,9 +294,9 @@
 	 * and returns ml/hr (rounded) as function value.
 	 * The paramaters will be multiplied by each other to get the return value.
 	 * 
-	 * @param rate is the first parameter for the rate in mg/kg/hr
-	 * @param patientWeight is the second parameter for the patient weight in kg
-	 * @param drugConc is the third paramater for the concentration of drug in mg/ml
+	 * @param rate is the rate in mg/kg/hr and the first parameter for the byWeight method
+	 * @param patientWeight is the patient weight in kg and the second parameter for the byWeight method 
+	 * @param drugConc is the concentration of drug in mg/ml and the third paramater for the byWeight method 
 	 * @return int This return the value of the ml/hr.
 	 */
 	public static int byWeight(double rate, double patientWeight, double drugConc) {
@@ -362,16 +305,19 @@
 	  	return mlPerHrRate;
 	}
 
-	// Dom
-		/**
-		 * This method takes input parameters rate in units/hr and concentration in units/ml
-		 * Calculates the total rate in mililiters per hour by
-		 * dividing units/hr('ratePh') to units/ml(concentration)
-		 * Returns ml/hr (rounded) and outputs the result
-		 */
-		public static void byUnits(int ratePh, int concentration) {
-			int totalRate = ratePh / concentration;
-			System.out.println("The rate in milliliters per hour is " + totalRate + ".\n\n	");
-		}
+
+	/**
+	 * This method takes input parameters rate in units/hr and concentration in units/ml
+	 * Calculates the total rate in mililiters per hour by
+	 * dividing units/hr('unitsPerHrRate') to units/ml(concentration)
+	 * 
+	 * @param unitsPerHrRate is the rate in units/hr and first parameter for the byUnits method
+	 * @param concentration is the concentration in units and second parameter for the byUnits method
+	 * @return int This returns ml/hr (rounded).
+	 */
+	public static int byUnits(int unitsPerHrRate, int concentration) {
+		int totalRate = (int)Math.round(unitsPerHrRate / concentration);
+		
+		return totalRate;
 	}
 }
