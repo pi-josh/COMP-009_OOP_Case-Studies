@@ -29,6 +29,7 @@ public class IntravenousRateAssistant {
 		 until the user input a valid integer or chooses to exit
 		 */
 		int choice = -1;
+		int result; // Placeholder for the resulting values
 		do {
 			choice = getProblem();
 
@@ -51,13 +52,33 @@ public class IntravenousRateAssistant {
 					 Passing the actual paramaters to the figDropMin function
 					 and storing it in a variable to be used in displaying the result
 					*/
-					int result = figDropsPerMin(mlPerHrRate, dropFactor);
+					result = figDropsPerMin(mlPerHrRate, dropFactor);
 					System.out.printf("The drop rate per minute is %d.\n\n", result);
 
 					break;
 				case 2:
 					break;
 				case 3:
+					/*
+					 Initial declaration of the variables needed for problem 3
+					 which will also serve as an actual parameters
+					*/
+					double rate, patientWeight, drugConc;
+					double[] ratePatientWeightAndDrugConc = new double[3];
+
+					// Getting the values of each variables
+					ratePatientWeightAndDrugConc = getKgRateConc();
+					rate = ratePatientWeightAndDrugConc[0];
+					patientWeight = ratePatientWeightAndDrugConc[1];
+					drugConc = ratePatientWeightAndDrugConc[2];
+
+					/*
+					 Passing the actual paramaters to the figDropMin function
+					 and storing it in a variable to be used in displaying the result
+					*/
+					result = byWeight(rate, patientWeight, drugConc);
+					System.out.printf("The rate in milliliters per hour is %d.\n\n", result);
+
 					break;
 				case 4:
 					break;
@@ -67,7 +88,7 @@ public class IntravenousRateAssistant {
 		} while(choice != 5);
 	}
 
-	// Raf
+
 	/**
 	 * This method is used to get the problem that will be chosen by the user.
 	 * The integer variable choice will be used as the placeholder of the value
@@ -95,19 +116,19 @@ public class IntravenousRateAssistant {
 			System.out.println();
 		} catch (Exception err) {
 			in.next(); // string buffer here to avoid infinite loop
-			System.err.println("Please input a valid integer!");
-			System.err.println(err);
+			System.err.println("\nPlease input a valid integer!");
+			System.err.println(err + "\n");
 		}
 		
 		return choice;
 	}
 
-	// Josh
+
 	/**
-	 * This method is prompts the user to enter the data required for problem 1,
+	 * This method prompts the user to enter the data required for problem 1,
 	 * and sends this data back to the calling module via output parameters.
 	 * 
-	 * @return int This return an array of two values: rate and drop factor.
+	 * @return int[] This return an integer array of two values: rate in ml/hr and tubing's drop factor.
 	 */
 	public static int[] getRateDropFactor() {
 		/*
@@ -125,16 +146,45 @@ public class IntravenousRateAssistant {
 				return new int[] {mlPerHrRate, dropFactor};
 			} catch (Exception err) {
 				in.next(); // string buffer here to avoid infinite loop
-				System.err.println("Please input a valid integer!");
-				System.err.println(err);
+				System.err.println("\nPlease input a valid integer!");
+				System.err.println(err + "\n");
 			}
 		} 
 	}
 
 	// Josh
-	public static void getKgRateConc() {
+	/**
+	 * This method prompts the user to enter the data required for problem 3
+	 * and sends this data back to the calling module via output parameters.
+	 * 
+	 * @return double[] This return a double array of three values: rate in mg/kg/hr, patient weight in kg,
+	 * and concentration of drug in mg/ml
+	 */
+	public static double[] getKgRateConc() {
+		/*
+		 Prompting the user for the rate in milliliter per hour 
+		 and tubing's drop factor until they input a valid double value
+		*/
+		while(true) {
+			try {
+				System.out.print("Enter rate in mg/kg/hr => ");
+				double rate = in.nextDouble();
 
+				System.out.print("Enter patient weight in kg => ");
+				double patientWeight = in.nextDouble();
+
+				System.out.print("Enter concentration in mg/ml => ");
+				double drugConc = in.nextDouble();
+
+				return new double[] {rate, patientWeight, drugConc};
+			} catch (Exception err) {
+				in.next(); // string buffer here to avoid infinite loop
+				System.err.println("\nPlease input a valid integer!");
+				System.err.println(err + "\n");
+			}
+		} 
 	}
+
 
 	// Raf
 	public static int getUnitsConc() {
@@ -153,7 +203,7 @@ public class IntravenousRateAssistant {
 		return totalRate; //returning value
 	}
 
-	// Cas
+
 	/**
 	 * This method is used to get the drop rate per minute.
 	 * This method will multiply the milliliters per hour rate by tubing's drop factor
@@ -175,9 +225,23 @@ public class IntravenousRateAssistant {
 		return 1;
 	}
 
-	// Cas
-	public static int byWeight(int mlPerHrRate, int weight, int concentration) {
-	  return Math.ceil(mlPerHrRate * weight * concentration);
+
+	/**
+	 * This method is used to get the milliliter per hour.
+	 * It takes rate in mg/kg/hr, patient weight in kg, and concentration
+	 * of drug in mg/ml as a formal parameters
+	 * and returns ml/hr (rounded) as function value.
+	 * The paramaters will be multiplied by each other to get the return value.
+	 * 
+	 * @param rate is the first parameter for the rate in mg/kg/hr
+	 * @param patientWeight is the second parameter for the patient weight in kg
+	 * @param drugConc is the third paramater for the concentration of drug in mg/ml
+	 * @return int This return the value of the ml/hr.
+	 */
+	public static int byWeight(double rate, double patientWeight, double drugConc) {
+		int mlPerHrRate = (int)Math.round(rate * patientWeight * drugConc);
+
+	  	return mlPerHrRate;
 	}
 
 	// Dom
