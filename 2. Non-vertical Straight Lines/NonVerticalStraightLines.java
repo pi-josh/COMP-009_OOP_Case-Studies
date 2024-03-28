@@ -31,7 +31,7 @@ public class NonVerticalStraightLines {
 		pointSlope[0] = scanner.nextDouble();
 		System.out.println("Enter the x-y coordinates of the point separated by a space=> "); 	
                 pointSlope[1] = scanner.nextDouble();
-		pointSlopte[2] = scanner.nextDouble();
+		pointSlope[2] = scanner.nextDouble();
 	}
 
 	// Josh
