@@ -177,7 +177,7 @@ public class IntravenousRateAssistant {
 
 	// Cas
 	public static int byWeight(int rate, int weight, int conc) {
-		return rate * weight * conc;
+		return Math.ceil(rate * weight * conc);
 	}
 
 	// Dom
