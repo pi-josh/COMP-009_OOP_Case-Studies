@@ -110,7 +110,10 @@ public class IntravenousRateAssistant {
 	 * @return int This return an array of two values: rate and drop factor.
 	 */
 	public static int[] getRateDropFactor() {
-		// Prompting the user for the tubing's drop factor until they input a valid integer
+		/*
+		 Prompting the user for the rate in milliliter per hour 
+		 and tubing's drop factor until they input a valid integer
+		*/
 		while(true) {
 			try {
 				System.out.print("Enter rate in ml/hr => ");
