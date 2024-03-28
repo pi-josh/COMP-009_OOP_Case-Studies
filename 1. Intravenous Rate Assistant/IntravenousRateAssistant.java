@@ -58,6 +58,7 @@ public class IntravenousRateAssistant {
 				case 2:
 					break;
 				case 3:
+					
 					break;
 				case 4:
 					break;
@@ -141,16 +142,15 @@ public class IntravenousRateAssistant {
 		// Initialization and declarations of variable
 		int ratePh = 0;
 		int concentration = 0;
-		int totalRate;
 		
-		//user input
+		//userinput
 		System.out.print("Enter rate in units/hr=> ");
 		ratePh = in.nextInt();
 		System.out.print("Enter concentration in units/ml=> ");
 		concentration = in.nextInt();
-		totalRate = ratePh / concentration; //calculation
 		
-		return totalRate; //returning value
+		return ratePerHr; //returning value
+		return concentration; //returning value
 	}
 
 	// Cas
