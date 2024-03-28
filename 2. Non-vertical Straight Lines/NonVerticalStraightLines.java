@@ -7,11 +7,9 @@
  */
 
 // Note: Functions name and return type are subject to change later
-import java.util.Scanner; 
 
 public class NonVerticalStraightLines {
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
 		System.out.println("Testing");
 	}
 
@@ -26,12 +24,17 @@ public class NonVerticalStraightLines {
 	}
 
 	// Cas
+<<<<<<< HEAD
 	public static void getPointSlope(Scanner scanner, double[] pointSlope) {
 		System.out.print("Enter the slope= ");
 		pointSlope[0] = scanner.nextDouble();
 		System.out.println("Enter the x-y coordinates of the point separated by a space=> "); 	
                 pointSlope[1] = scanner.nextDouble();
 		pointSlope[2] = scanner.nextDouble();
+=======
+	public static void getPointSlope() {
+
+>>>>>>> main
 	}
 
 	// Josh
@@ -45,11 +48,8 @@ public class NonVerticalStraightLines {
 	}
 
 	// Cas
-	public static void diplayTwoPoints(double[] points) {
-		System.out.println("Two-point form");
-		System.out.println("(" + points[3] + " - " + points[1] + ")");
-		System.out.println("m = --------------------");
-		System.out.println("(" + points[2] + " - " + points[0] + ")");
+	public static void diplayTwoPoints() {
+
 	}
 
 	// Raf
