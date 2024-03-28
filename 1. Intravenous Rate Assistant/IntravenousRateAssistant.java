@@ -78,7 +78,6 @@ public class IntravenousRateAssistant {
 					*/
 					result = byWeight(rate, patientWeight, drugConc);
 					System.out.printf("The rate in milliliters per hour is %d.\n\n", result);
-
 					break;
 				case 4:
 					break;
@@ -186,21 +185,32 @@ public class IntravenousRateAssistant {
 	}
 
 
-	// Raf
-	public static int getUnitsConc() {
-		// Initialization and declarations of variable
-		int ratePh = 0;
-		int concentration = 0;
-		int totalRate;
-		
-		//user input
-		System.out.print("Enter rate in units/hr=> ");
-		ratePh = in.nextInt();
-		System.out.print("Enter concentration in units/ml=> ");
-		concentration = in.nextInt();
-		totalRate = ratePh / concentration; //calculation
-		
-		return totalRate; //returning value
+  /**
+	 * This method prompts the user to enter the data required for problem 4
+	 * and sends this data back to the calling module via output parameters.
+	 * 
+	 * @return int[] This return a integer array of two values: rate in units/hr
+	 * and concentration of concentration in units/ml.
+	 */
+	public static int[] getUnitsConc() {
+  /*
+		Prompting the user for the rate in units per hour
+		and concentration in units per milliliters until they input a valid integer value
+	*/
+    while(true) {
+			try {
+				System.out.print("Enter rate in units/hr => ");
+        ratePerHr = in.nextInt();
+        System.out.print("Enter concentration in units/ml => ");
+        concentration = in.nextInt();
+
+				return new int[] {ratePerHr, concentration};
+			} catch (Exception err) {
+				in.next(); // string buffer here to avoid infinite loop
+				System.err.println("\nPlease input a valid integer!");
+				System.err.println(err + "\n");
+			}
+		} 
 	}
 
 
