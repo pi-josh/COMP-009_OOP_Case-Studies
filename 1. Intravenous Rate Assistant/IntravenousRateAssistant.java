@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class IntravenousRateAssistant {
 	/*
 	 Scanner method named in to get the input from the user
-	 all throughout the program
+	 to be used all throughout the program
 	*/
 	static Scanner in = new Scanner(System.in);
 
@@ -30,6 +30,9 @@ public class IntravenousRateAssistant {
 		 */
 		int choice = -1;
 		int result; // Placeholder for the resulting values
+
+		System.out.println("++++++++++++++++++++ INTRAVENOUS RATE ASSISTANT ++++++++++++++++++++");
+		
 		do {
 			choice = getProblem();
 
@@ -73,15 +76,34 @@ public class IntravenousRateAssistant {
 					drugConc = ratePatientWeightAndDrugConc[2];
 
 					/*
-					 Passing the actual paramaters to the figDropMin function
+					 Passing the actual paramaters to the byWeight function
 					 and storing it in a variable to be used in displaying the result
 					*/
 					result = byWeight(rate, patientWeight, drugConc);
 					System.out.printf("The rate in milliliters per hour is %d.\n\n", result);
 					break;
 				case 4:
+					/*
+					 Initial declaration of the variables needed for problem 4
+					 which will also serve as an actual parameters
+					*/
+					int unitsPerHrRate, concentration;
+					int[] unitsAndConc = new int[2];
+
+					// Getting the values of each variables
+					unitsAndConc = getUnitsConc();
+					unitsPerHrRate = unitsAndConc[0];
+					concentration = unitsAndConc[1];
+
+					/*
+					 Passing the actual paramaters to the byUnits function
+					 and storing it in a variable to be used in displaying the result
+					*/
+					result = byUnits(unitsPerHrRate, concentration);
+					System.out.printf("The rate in milliliters per hour is %d.\n\n", result);
 					break;
 				case 5:
+					System.out.println("++++++++++++++++++++++++ THANK YOU FOR USING +++++++++++++++++++++++");
 					break;
 			}
 		} while(choice != 5);
@@ -142,7 +164,7 @@ public class IntravenousRateAssistant {
 				System.out.print("Enter tubing's drop factor (drops/ml) => ");
 				int dropFactor = in.nextInt();
 
-				return new int[] {mlPerHrRate, dropFactor};
+				return new int[] {mlPerHrRate, dropFactor}; 	// returning values
 			} catch (Exception err) {
 				in.next(); // string buffer here to avoid infinite loop
 				System.err.println("\nPlease input a valid integer!");
@@ -151,7 +173,7 @@ public class IntravenousRateAssistant {
 		} 
 	}
 
-	// Josh
+
 	/**
 	 * This method prompts the user to enter the data required for problem 3
 	 * and sends this data back to the calling module via output parameters.
@@ -175,7 +197,7 @@ public class IntravenousRateAssistant {
 				System.out.print("Enter concentration in mg/ml => ");
 				double drugConc = in.nextDouble();
 
-				return new double[] {rate, patientWeight, drugConc};
+				return new double[] {rate, patientWeight, drugConc}; 	// returning values
 			} catch (Exception err) {
 				in.next(); // string buffer here to avoid infinite loop
 				System.err.println("\nPlease input a valid integer!");
@@ -193,18 +215,18 @@ public class IntravenousRateAssistant {
 	 * and concentration of concentration in units/ml.
 	 */
 	public static int[] getUnitsConc() {
-  /*
-		Prompting the user for the rate in units per hour
-		and concentration in units per milliliters until they input a valid integer value
-	*/
-    while(true) {
+	  	/*
+			Prompting the user for the rate in units per hour
+			and concentration in units per milliliters until they input a valid integer value
+		*/
+	    while(true) {
 			try {
 				System.out.print("Enter rate in units/hr => ");
-        ratePerHr = in.nextInt();
-        System.out.print("Enter concentration in units/ml => ");
-        concentration = in.nextInt();
+		        int unitsPerHrRate = in.nextInt();
+		        System.out.print("Enter concentration in units/ml => ");
+		        int concentration = in.nextInt();
 
-				return new int[] {ratePerHr, concentration};
+				return new int[] {unitsPerHrRate, concentration}; 	// returning values
 			} catch (Exception err) {
 				in.next(); // string buffer here to avoid infinite loop
 				System.err.println("\nPlease input a valid integer!");
@@ -255,7 +277,7 @@ public class IntravenousRateAssistant {
 	}
 
 	// Dom
-	public static void byUnits() {
-
+	public static int byUnits(int unitsPerHrRate, int concentration) {
+		return -1;
 	}
 }
