@@ -125,7 +125,11 @@ public class IntravenousRateAssistant {
 					break;
 				case 5:
 					System.out.println("++++++++++++++++++++++++ THANK YOU FOR USING +++++++++++++++++++++++");
+					in.close();		// Closing the Scanner object to avoid resource leak
 					break;
+				default:
+					System.out.println("Inputted value is not on the choices available!\n");
+					continue;
 			}
 		} while(choice != 5);
 	}
