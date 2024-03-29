@@ -90,6 +90,11 @@ public class Ohms {
 		// TODO: Check if the target band is in the string of color codes (you can use a for loop here)
 		// then return the subscript of the color code if it matches the target, otherwise return -1
 
+		for (int i = 0; i < COLOR_CODES.length; i++){
+			if (COLOR_CODES[i].equals(target)){
+				return i;
+			}
+		}
 		return -1;
 	}
 
