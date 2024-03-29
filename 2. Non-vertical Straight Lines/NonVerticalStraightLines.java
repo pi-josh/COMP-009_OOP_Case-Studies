@@ -40,17 +40,12 @@ public class NonVerticalStraightLines {
 	}
 
 	// Cas
-<<<<<<< HEAD
 	public static void getPointSlope(Scanner scanner, double[] pointSlope) {
 		System.out.print("Enter the slope= ");
 		pointSlope[0] = scanner.nextDouble();
 		System.out.println("Enter the x-y coordinates of the point separated by a space=> "); 	
-                pointSlope[1] = scanner.nextDouble();
+        pointSlope[1] = scanner.nextDouble();
 		pointSlope[2] = scanner.nextDouble();
-=======
-	public static void getPointSlope() {
-
->>>>>>> main
 	}
 
 	// Josh
