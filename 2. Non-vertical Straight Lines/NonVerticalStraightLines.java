@@ -7,6 +7,7 @@
  * 
  * @author Cassidy Fernandez, Dominic Syd Aldas, Joshua Macatunao, Rafael Lafuente
  * 
+ * @version 29/03/24
  */
 
 import java.util.Scanner;
@@ -17,101 +18,6 @@ public class NonVerticalStraightLines {
 	 to be used all throughout the program
 	*/
 	static Scanner in = new Scanner(System.in);
-
-	/**
-	 * This is the main method which run the application
-	 */
-	public static void main(String[] args) {
-		/*
-		 Calling the getProblem function
-		 and storing the integer value that corresponds to the chosen problem
-		 until the user input a valid integer or chooses to exit
-		 */
-		char answer = 'Y';
-		double slope, intercept; // Placeholder for the slope and intercept values since it will be used by two problems
-
-		System.out.println("++++++++++++++++++++ NON-VERTICAL STRAIGHT LINES ++++++++++++++++++++");
-
-		do {
-			int choice = getProblem();
-
-			// Calling the function based on the choice of the user
-			switch(choice) {
-				case 1:
-					/*
-					 Initial declaration of the variables needed and
-					 which will also serve as an actual parameters for slopeInterceptFromTwoPoints method
-					*/
-					int xOfPoint1, yOfPoint1; // x-y coordinates of point 1
-					int xOfPoint2, yOfPoint2; // x-y coordinates of point 2
-					int[][] twoPoints = new int [2][2];
-
-					// Getting the values of each variables
-					twoPoints = getTwoPoints();	// Calling the getTwoPoints method here
-					xOfPoint1 = twoPoints[0][0];
-					yOfPoint1 = twoPoints[0][1];
-					xOfPoint2 = twoPoints[1][0];
-					yOfPoint2 = twoPoints[1][1];
-
-					/*
-					 Passing the actual paramaters to the slopeInterceptFromTwoPoints function
-					 and storing it in a variable to be used in displaying the result
-					*/
-					double[] slopeAndIntercept = slopeInterceptFromTwoPoints(xOfPoint1, yOfPoint1, xOfPoint2, yOfPoint1);
-					slope = slopeAndIntercept[0];
-					intercept = slopeAndIntercept[1];
-
-					// Displaying the results by calling the displayTwoPoints and displaySlopeIntercept methods
-					diplayTwoPoints(xOfPoint1, yOfPoint1, xOfPoint2, yOfPoint1);
-					displaySlopeIntercept(slope, intercept);
-					System.out.println();
-					break;
-				case 2:
-					/*
-					 Initial declaration of the variables needed and
-					 which will also serve as an actual parameters for interceptFromPointSlope method
-					*/
-					double xCoordinate, yCoordinate; // Coordinates of the point
-					double[] pointAndSlope = new double[3];
-
-					// Getting the values of each variables
-					pointAndSlope = getPointSlope();	// Calling the getPointSlope method here
-					xCoordinate = pointAndSlope[0];
-					yCoordinate = pointAndSlope[1];
-					slope = pointAndSlope[2];
-
-					/*
-					 Passing the actual paramaters to the interceptFromPointSlope function
-					 and storing it in a variable to be used in displaying the result
-					*/
-					intercept = interceptFromPointSlope(xCoordinate, yCoordinate, slope);
-
-					// Displaying the results by calling the displayPointSlope and displaySlopeIntercept methods
-					displayPointSlope(xCoordinate, yCoordinate, slope);
-					displaySlopeIntercept(slope, intercept);
-					System.out.println();
-					break;
-				default:
-					System.out.println("Inputted value is not on the choices available!\n");
-					continue;
-			}
-
-			// Keep prompting the user if they want to do another conversion until they enter a valid input
-			while(true) {
-				System.out.println("Do another conversion (Y or N) => ");
-				answer = in.next().charAt(0);
-				answer = Character.toUpperCase(answer);
-				if(answer == 'Y') {
-					break;
-				} else if(answer == 'N') {
-					System.out.println("+++++++++++++++++++++++++++++ THANK YOU +++++++++++++++++++++++++++++");
-					break;
-				} else {
-					System.out.println("Please input 'Y' or 'N' only!\n");
-				}
-			}
-		} while(answer != 'N');
-	}
 
 
 	/**
@@ -298,5 +204,104 @@ public class NonVerticalStraightLines {
 			Slope-intercept form
 			y = 0.33x + 1.66
 		*/
+	}
+
+
+	/**
+	 * This is the main method which run the application
+	 */
+	public static void main(String[] args) {
+		/*
+		 Calling the getProblem function
+		 and storing the integer value that corresponds to the chosen problem
+		 until the user input a valid integer or chooses to exit
+		 */
+		char answer = 'Y';
+		double slope, intercept; // Placeholder for the slope and intercept values since it will be used by two problems
+
+		System.out.println("++++++++++++++++++++ NON-VERTICAL STRAIGHT LINES ++++++++++++++++++++");
+
+		do {
+			int choice = getProblem();
+
+			// Calling the function based on the choice of the user
+			switch(choice) {
+				case 1:
+					/*
+					 Initial declaration of the variables needed and
+					 which will also serve as an actual parameters for slopeInterceptFromTwoPoints method
+					*/
+					int xOfPoint1, yOfPoint1; // x-y coordinates of point 1
+					int xOfPoint2, yOfPoint2; // x-y coordinates of point 2
+					int[][] twoPoints = new int [2][2];
+
+					// Getting the values of each variables
+					twoPoints = getTwoPoints();	// Calling the getTwoPoints method here
+					xOfPoint1 = twoPoints[0][0];
+					yOfPoint1 = twoPoints[0][1];
+					xOfPoint2 = twoPoints[1][0];
+					yOfPoint2 = twoPoints[1][1];
+
+					/*
+					 Passing the actual paramaters to the slopeInterceptFromTwoPoints function
+					 and storing it in a variable to be used in displaying the result
+					*/
+					double[] slopeAndIntercept = slopeInterceptFromTwoPoints(xOfPoint1, yOfPoint1, xOfPoint2, yOfPoint1);
+					slope = slopeAndIntercept[0];
+					intercept = slopeAndIntercept[1];
+
+					// Displaying the results by calling the displayTwoPoints and displaySlopeIntercept methods
+					diplayTwoPoints(xOfPoint1, yOfPoint1, xOfPoint2, yOfPoint1);
+					displaySlopeIntercept(slope, intercept);
+					System.out.println();
+					break;
+				case 2:
+					/*
+					 Initial declaration of the variables needed and
+					 which will also serve as an actual parameters for interceptFromPointSlope method
+					*/
+					double xCoordinate, yCoordinate; // Coordinates of the point
+					double[] pointAndSlope = new double[3];
+
+					// Getting the values of each variables
+					pointAndSlope = getPointSlope();	// Calling the getPointSlope method here
+					xCoordinate = pointAndSlope[0];
+					yCoordinate = pointAndSlope[1];
+					slope = pointAndSlope[2];
+
+					/*
+					 Passing the actual paramaters to the interceptFromPointSlope function
+					 and storing it in a variable to be used in displaying the result
+					*/
+					intercept = interceptFromPointSlope(xCoordinate, yCoordinate, slope);
+
+					// Displaying the results by calling the displayPointSlope and displaySlopeIntercept methods
+					displayPointSlope(xCoordinate, yCoordinate, slope);
+					displaySlopeIntercept(slope, intercept);
+					System.out.println();
+					break;
+				default:
+					in.close();		// Closing the Scanner object to avoid resource leak
+					System.out.println("Inputted value is not on the choices available!\n");
+					continue;
+			}
+
+			// Keep prompting the user if they want to do another conversion until they enter a valid input
+			while(true) {
+				System.out.println("Do another conversion (Y or N) => ");
+				answer = in.next().charAt(0);
+				answer = Character.toUpperCase(answer);
+				if(answer == 'Y') {
+					break;
+				} else if(answer == 'N') {
+					System.out.println("+++++++++++++++++++++++++++++ THANK YOU +++++++++++++++++++++++++++++");
+					break;
+				} else {
+					System.out.println("Please input 'Y' or 'N' only!\n");
+				}
+			}
+		} while(answer != 'N');
+
+
 	}
 }
