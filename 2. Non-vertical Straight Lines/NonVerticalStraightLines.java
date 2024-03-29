@@ -91,6 +91,9 @@ public class NonVerticalStraightLines {
 					displaySlopeIntercept(slope, intercept);
 					System.out.println();
 					break;
+				default:
+					System.out.println("Inputted value is not on the choices available!\n");
+					continue;
 			}
 
 			// Keep prompting the user if they want to do another conversion until they enter a valid input
@@ -246,7 +249,7 @@ public class NonVerticalStraightLines {
 		return -1; // temporary lang since may error
 	}
 
-	// Cas
+
 	/**
 	 * This method takes four input parameters, the x-y coordinates of two points, and displays the 
 	 * two-point line equation with a heading
@@ -257,17 +260,11 @@ public class NonVerticalStraightLines {
 	 * @param y2 This is the y-coordinate of point 2 and the fourth parameter for diplayTwoPoints
 	 */
 	public static void diplayTwoPoints(double x1, double y1, double x2, double y2) {
-		// TODO: Implement the same format as the case study guide here
-		/*
-				Two-point form
-				 (1.00 – 3.00)
-			m = ----------------
-				 (-2.00 – 4.00)
-		*/
+		// Displaying the two-point form
 		System.out.println("Two-point form");
-		System.out.println("(" + String.format("%.2f", y2) + " - " + String.format("%.2f", y1) + ")");
+		System.out.println("     (" + String.format("%.2f", y2) + " - " + String.format("%.2f", y1) + ")");
 		System.out.println("m = ----------------");
-		System.out.println("(" + String.format("%.2f", x2) + " - " + String.format("%.2f", x1) + ")")	
+		System.out.println("     (" + String.format("%.2f", x2) + " - " + String.format("%.2f", x1) + ")");	
 	}
 
 	// Raf
