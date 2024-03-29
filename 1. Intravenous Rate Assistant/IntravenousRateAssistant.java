@@ -3,8 +3,9 @@
  * assist with the calculation of intravenous rates. It allows user
  * interaction with the command line interface to ask the assistant
  * in solving various problems limited to the choices prompted.
+ * This program runs until the user chooses to exit.
  * 
- *  @author Cassidy Fernandez, Dominic Syd Aldas, Joshua Macatunao, Rafael Lafuente
+ * @author Cassidy Fernandez, Dominic Syd Aldas, Joshua Macatunao, Rafael Lafuente
  */
 
 import java.util.Scanner;
