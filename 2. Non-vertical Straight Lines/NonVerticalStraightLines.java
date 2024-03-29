@@ -81,7 +81,7 @@ public class NonVerticalStraightLines {
 					slope = pointAndSlope[2];
 
 					/*
-					 Passing the actual paramaters to the slopeInterceptFromTwoPoints function
+					 Passing the actual paramaters to the interceptFromPointSlope function
 					 and storing it in a variable to be used in displaying the result
 					*/
 					intercept = interceptFromPointSlope(xCoordinate, yCoordinate, slope);
