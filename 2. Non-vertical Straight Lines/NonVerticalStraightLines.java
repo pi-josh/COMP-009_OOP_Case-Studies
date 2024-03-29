@@ -264,6 +264,10 @@ public class NonVerticalStraightLines {
 			m = ----------------
 				 (-2.00 – 4.00)
 		*/
+		System.out.println("Two-point form");
+		System.out.println("(" + String.format("%.2f", y2) + " - " + String.format("%.2f", y1) + ")");
+		System.out.println("m = ----------------");
+		System.out.println("(" + String.format("%.2f", x2) + " - " + String.format("%.2f", x1) + ")")	
 	}
 
 	// Raf
