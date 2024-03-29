@@ -28,7 +28,7 @@ public class NonVerticalStraightLines {
 		 until the user input a valid integer or chooses to exit
 		 */
 		char answer = 'Y';
-		int result; // Placeholder for the returning values 
+		double slope, intercept; // Placeholder for the slope and intercept values since it will be used by two problems
 
 		System.out.println("++++++++++++++++++++ NON-VERTICAL STRAIGHT LINES ++++++++++++++++++++");
 
@@ -40,7 +40,7 @@ public class NonVerticalStraightLines {
 				case 1:
 					/*
 					 Initial declaration of the variables needed and
-					 which will also serve as an actual parameters for getTwoPoints method
+					 which will also serve as an actual parameters for slopeInterceptFromTwoPoints method
 					*/
 					int xOfPoint1, yOfPoint1; // x-y coordinates of point 1
 					int xOfPoint2, yOfPoint2; // x-y coordinates of point 2
@@ -58,15 +58,38 @@ public class NonVerticalStraightLines {
 					 and storing it in a variable to be used in displaying the result
 					*/
 					double[] slopeAndIntercept = slopeInterceptFromTwoPoints(xOfPoint1, yOfPoint1, xOfPoint2, yOfPoint1);
-					double slope = slopeAndIntercept[0];
-					double intercept = slopeAndIntercept[1];
+					slope = slopeAndIntercept[0];
+					intercept = slopeAndIntercept[1];
 
 					// Displaying the results by calling the displayTwoPoints and displaySlopeIntercept methods
 					diplayTwoPoints(xOfPoint1, yOfPoint1, xOfPoint2, yOfPoint1);
-					displayPointSlope(slope, intercept);
+					displaySlopeIntercept(slope, intercept);
 					System.out.println();
 					break;
 				case 2:
+					/*
+					 Initial declaration of the variables needed and
+					 which will also serve as an actual parameters for interceptFromPointSlope method
+					*/
+					double xCoordinate, yCoordinate; // Coordinates of the point
+					double[] pointAndSlope = new double[3];
+
+					// Getting the values of each variables
+					pointAndSlope = getPointSlope();	// Calling the getPointSlope method here
+					xCoordinate = pointAndSlope[0];
+					yCoordinate = pointAndSlope[1];
+					slope = pointAndSlope[2];
+
+					/*
+					 Passing the actual paramaters to the slopeInterceptFromTwoPoints function
+					 and storing it in a variable to be used in displaying the result
+					*/
+					intercept = interceptFromPointSlope(xCoordinate, yCoordinate, slope);
+
+					// Displaying the results by calling the displayPointSlope and displaySlopeIntercept methods
+					displayPointSlope(xCoordinate, yCoordinate, slope);
+					displaySlopeIntercept(slope, intercept);
+					System.out.println();
 					break;
 			}
 
@@ -87,7 +110,7 @@ public class NonVerticalStraightLines {
 		} while(answer != 'N');
 	}
 
-	// Josh
+
 	/**
 	 * This method is used to get the problem that will be chosen by the user.
 	 * The integer variable choice will be used as the placeholder of the value
@@ -121,7 +144,7 @@ public class NonVerticalStraightLines {
 		return choice;
 	}
 
-	// Raf
+
 	/**
 	 * This method prompts the user to enter the data required for Two-point form,
 	 * and sends this data back to the calling module via output parameters.
@@ -159,14 +182,24 @@ public class NonVerticalStraightLines {
 	}
 
 	// Cas
-	public static void getPointSlope(double[] pointSlope) {
+	/**
+	 * This method prompts the user to enter the data required for Point-slope form,
+	 * and sends this data back to the calling module via output parameters.
+	 * This prompts the user for the slope and x-y coordinates of the point, inputs the three 
+	 * values and returns them to the calling function through output parameters.
+	 * 
+	 * @return double[] This return a double array three values: slope, x-coordinate and y-coordinate of a point.
+	 */
+	public static double[] getPointSlope() {
 		while(true) {
 			try {
-				System.out.print("Enter the slope= ");
-				pointSlope[0] = in.nextDouble();
-				System.out.println("Enter the x-y coordinates of the point separated by a space=> "); 	
-			    pointSlope[1] = in.nextDouble();
-				pointSlope[2] = in.nextDouble();
+				System.out.print("Enter the slope => ");
+				double slope = in.nextDouble();
+				System.out.println("Enter the x-y coordinates of the point separated by a space => "); 	
+			    double xCoordinate = in.nextDouble();
+				double yCoordinate = in.nextDouble();
+
+				return new double[] {slope, xCoordinate, yCoordinate}; // Returning slope and x-y coordinates of the point here
 			} catch (Exception err) {
 				in.next(); // string buffer here to avoid infinite loop
 				System.err.println("\nPlease input a valid double value!");
@@ -175,7 +208,7 @@ public class NonVerticalStraightLines {
 		} 
 	}
 
-	// Josh
+
 	/**
 	 * This method takes four input parameters, the x-y coordinates of two points, and 
 	 * returns through output parameters the slope (m) and y-intercept (b).
@@ -191,28 +224,78 @@ public class NonVerticalStraightLines {
 		double m = (y2 - y1) / (x2 - x1);
 
 		// Getting the y-intercept
-		double b = y1 - (m * x1);
+		double b = interceptFromPointSlope(x1, y1, m);
 
 		return new double[] {m, b}; // Returning slope and y-intercept here
 	}
 
 	// Dom
-	public static void interceptFromPointSlope() {
+	/**
+	 * This method takes three input parameters, the x-y coordinates of one point and the 
+	 * slope, and returns as the function value the y-intercept.
+	 * 
+	 * @param x This is the x-coordinate of the point and the first parameter for interceptFromPointSlope
+	 * @param y This is the y-coordinate of the point and the second parameter for interceptFromPointSlope
+	 * @param m This is the slope of the point and the third parameter for interceptFromPointSlope
+	 * @return double This return the value for the y-intercept.
+	 */
+	public static double interceptFromPointSlope(double x, double y, double m) {
+		// TODO: Calculate here
 
+		// TODO: Return value here
+		return -1; // temporary lang since may error
 	}
 
 	// Cas
+	/**
+	 * This method takes four input parameters, the x-y coordinates of two points, and displays the 
+	 * two-point line equation with a heading
+	 * 
+	 * @param x1 This is the x-coordinate of point 1 and the first parameter for diplayTwoPoints
+	 * @param y1 This is the y-coordinate of point 1 and the second parameter for diplayTwoPoints
+	 * @param x2 This is the x-coordinate of point 2 and the third parameter for diplayTwoPoints
+	 * @param y2 This is the y-coordinate of point 2 and the fourth parameter for diplayTwoPoints
+	 */
 	public static void diplayTwoPoints(double x1, double y1, double x2, double y2) {
-
+		// TODO: Implement the same format as the case study guide here
+		/*
+				Two-point form
+				 (1.00 – 3.00)
+			m = ----------------
+				 (-2.00 – 4.00)
+		*/
 	}
 
 	// Raf
-	public static void displayPointSlope(double m, double b) {
-
+	/**
+	 * This method takes three input parameters, the x-y coordinates of one point and the slope, 
+	 * and displays the point-slope line equation with a heading.
+	 * 
+	 * @param x This is the x-coordinate of the point and the first parameter for displayPointSlope
+	 * @param y This is the y-coordinate of the point and the second parameter for displayPointSlope
+	 * @param m This is the slope of the point and the third parameter for displayPointSlope
+	 */
+	public static void displayPointSlope(double x, double y, double m) {
+		// TODO: Implement the same format as the case study guide here
+		/*
+			Point-slope form
+			y – 1.00 = 4.20 (x – 1.00)
+		*/
 	}
 
 	// Dom
-	public static void displaySlopeIntercept() {
-		
+	/**
+	 * This method takes two input parameters, the slope and y-intercept,
+	 * and displays the slope-intercept line equation with a heading.
+	 * 
+	 * @param m This is the slope of the point and the first parameter for displaySlopeIntercept
+	 * @param b This is the y-intercept of the point and the second parameter for displaySlopeIntercept
+	 */
+	public static void displaySlopeIntercept(double m, double b) {
+		// TODO: Implement the same format as the case study guide here
+		/*
+			Slope-intercept form
+			y = 0.33x + 1.66
+		*/
 	}
 }
