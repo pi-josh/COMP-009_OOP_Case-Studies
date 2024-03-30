@@ -6,6 +6,8 @@
  * This program runs until the user chooses to exit.
  * 
  * @author Cassidy Fernandez, Dominic Syd Aldas, Joshua Macatunao, Rafael Lafuente
+ * 
+ * @version 29/03/24
  */
 
 import java.util.Scanner;
@@ -16,123 +18,6 @@ public class IntravenousRateAssistant {
 	 to be used all throughout the program
 	*/
 	static Scanner in = new Scanner(System.in);
-
-	/**
-	 * This is the main method which run the application
-	 */
-	public static void main(String[] args) {
-		/*
-		 Calling the getProblem function
-		 and storing the integer value that corresponds to the chosen problem
-		 until the user input a valid integer or chooses to exit
-		 */
-		int choice = -1;
-		int result; // Placeholder for the returning values 
-
-		System.out.println("++++++++++++++++++++ INTRAVENOUS RATE ASSISTANT ++++++++++++++++++++");
-
-		do {
-			choice = getProblem();
-
-			// Calling the function based on the choice of the user
-			switch(choice) {
-				case 1:
-					/*
-					 Initial declaration of the variables needed for problem 1
-					 which will also serve as an actual parameters
-					*/
-					int mlPerHrRate, dropFactor;
-					int[] rateAndDropFactor = new int[2];
-
-					// Getting the values of each variables
-					rateAndDropFactor = getRateDropFactor();
-					mlPerHrRate = rateAndDropFactor[0];
-					dropFactor = rateAndDropFactor[1];
-
-					/*
-					 Passing the actual paramaters to the figDropMin function
-					 and storing it in a variable to be used in displaying the result
-					*/
-					result = figDropsPerMin(mlPerHrRate, dropFactor);
-					System.out.printf("The drop rate per minute is %d.\n\n", result);
-					break;
-				case 2:
-					/*
-					 Prompting the user for the number of hours until they input a valid integer
-					 and will be used as the actual parameter for figMlPerHour method
-					*/
-					int hours;
-					while(true) {
-						try {
-							System.out.print("Enter number of hours => ");
-	                		hours = in.nextInt();
-
-	                		break;
-						} catch (Exception err) {
-							in.next(); // string buffer here to avoid infinite loop
-							System.err.println("\nPlease input a valid integer!");
-							System.err.println(err + "\n");
-						}
-					}
-
-                	/*
-					 Passing the actual paramaters to the figDropMin function
-					 and storing it in a variable to be used in displaying the result
-					*/
-                	result = figMlPerHour(hours);
-                	System.out.printf("The rate in milliliters per hour is %d.\n\n", result);
-					break;
-				case 3:
-					/*
-					 Initial declaration of the variables needed for problem 3
-					 which will also serve as an actual parameters
-					*/
-					double rate, patientWeight, drugConc;
-					double[] ratePatientWeightAndDrugConc = new double[3];
-
-					// Getting the values of each variables
-					ratePatientWeightAndDrugConc = getKgRateConc();
-					rate = ratePatientWeightAndDrugConc[0];
-					patientWeight = ratePatientWeightAndDrugConc[1];
-					drugConc = ratePatientWeightAndDrugConc[2];
-
-					/*
-					 Passing the actual paramaters to the byWeight function
-					 and storing it in a variable to be used in displaying the result
-					*/
-					result = byWeight(rate, patientWeight, drugConc);
-					System.out.printf("The rate in milliliters per hour is %d.\n\n", result);
-					break;
-				case 4:
-					/*
-					 Initial declaration of the variables needed for problem 4
-					 which will also serve as an actual parameters
-					*/
-					int unitsPerHrRate, concentration;
-					int[] unitsAndConc = new int[2];
-
-					// Getting the values of each variables
-					unitsAndConc = getUnitsConc();
-					unitsPerHrRate = unitsAndConc[0];
-					concentration = unitsAndConc[1];
-
-					/*
-					 Passing the actual paramaters to the byUnits function
-					 and storing it in a variable to be used in displaying the result
-					*/
-					result = byUnits(unitsPerHrRate, concentration);
-					System.out.printf("The rate in milliliters per hour is %d.\n\n", result);
-					break;
-				case 5:
-					System.out.println("++++++++++++++++++++++++ THANK YOU FOR USING +++++++++++++++++++++++");
-					in.close();		// Closing the Scanner object to avoid resource leak
-					break;
-				default:
-					System.out.println("Inputted value is not on the choices available!\n");
-					continue;
-			}
-		} while(choice != 5);
-	}
 
 
 	/**
@@ -324,6 +209,124 @@ public class IntravenousRateAssistant {
 		int totalRate = (int)Math.round(unitsPerHrRate / concentration);
 		
 		return totalRate;
+	}
+
+
+	/**
+	 * This is the main method which run the application
+	 */
+	public static void main(String[] args) {
+		/*
+		 Calling the getProblem function
+		 and storing the integer value that corresponds to the chosen problem
+		 until the user input a valid integer or chooses to exit
+		 */
+		int choice = -1;
+		int result; // Placeholder for the returning values 
+
+		System.out.println("++++++++++++++++++++ INTRAVENOUS RATE ASSISTANT ++++++++++++++++++++");
+
+		do {
+			choice = getProblem();
+
+			// Calling the function based on the choice of the user
+			switch(choice) {
+				case 1:
+					/*
+					 Initial declaration of the variables needed for problem 1
+					 which will also serve as an actual parameters
+					*/
+					int mlPerHrRate, dropFactor;
+					int[] rateAndDropFactor = new int[2];
+
+					// Getting the values of each variables
+					rateAndDropFactor = getRateDropFactor();
+					mlPerHrRate = rateAndDropFactor[0];
+					dropFactor = rateAndDropFactor[1];
+
+					/*
+					 Passing the actual paramaters to the figDropMin function
+					 and storing it in a variable to be used in displaying the result
+					*/
+					result = figDropsPerMin(mlPerHrRate, dropFactor);
+					System.out.printf("The drop rate per minute is %d.\n\n", result);
+					break;
+				case 2:
+					/*
+					 Prompting the user for the number of hours until they input a valid integer
+					 and will be used as the actual parameter for figMlPerHour method
+					*/
+					int hours;
+					while(true) {
+						try {
+							System.out.print("Enter number of hours => ");
+	                		hours = in.nextInt();
+
+	                		break;
+						} catch (Exception err) {
+							in.next(); // string buffer here to avoid infinite loop
+							System.err.println("\nPlease input a valid integer!");
+							System.err.println(err + "\n");
+						}
+					}
+
+                	/*
+					 Passing the actual paramaters to the figDropMin function
+					 and storing it in a variable to be used in displaying the result
+					*/
+                	result = figMlPerHour(hours);
+                	System.out.printf("The rate in milliliters per hour is %d.\n\n", result);
+					break;
+				case 3:
+					/*
+					 Initial declaration of the variables needed for problem 3
+					 which will also serve as an actual parameters
+					*/
+					double rate, patientWeight, drugConc;
+					double[] ratePatientWeightAndDrugConc = new double[3];
+
+					// Getting the values of each variables
+					ratePatientWeightAndDrugConc = getKgRateConc();
+					rate = ratePatientWeightAndDrugConc[0];
+					patientWeight = ratePatientWeightAndDrugConc[1];
+					drugConc = ratePatientWeightAndDrugConc[2];
+
+					/*
+					 Passing the actual paramaters to the byWeight function
+					 and storing it in a variable to be used in displaying the result
+					*/
+					result = byWeight(rate, patientWeight, drugConc);
+					System.out.printf("The rate in milliliters per hour is %d.\n\n", result);
+					break;
+				case 4:
+					/*
+					 Initial declaration of the variables needed for problem 4
+					 which will also serve as an actual parameters
+					*/
+					int unitsPerHrRate, concentration;
+					int[] unitsAndConc = new int[2];
+
+					// Getting the values of each variables
+					unitsAndConc = getUnitsConc();
+					unitsPerHrRate = unitsAndConc[0];
+					concentration = unitsAndConc[1];
+
+					/*
+					 Passing the actual paramaters to the byUnits function
+					 and storing it in a variable to be used in displaying the result
+					*/
+					result = byUnits(unitsPerHrRate, concentration);
+					System.out.printf("The rate in milliliters per hour is %d.\n\n", result);
+					break;
+				case 5:
+					System.out.println("++++++++++++++++++++++++ THANK YOU FOR USING +++++++++++++++++++++++");
+					in.close();		// Closing the Scanner object to avoid resource leak
+					break;
+				default:
+					System.out.println("Inputted value is not on the choices available!\n");
+					continue;
+			}
+		} while(choice != 5);
 	}
 }
 
