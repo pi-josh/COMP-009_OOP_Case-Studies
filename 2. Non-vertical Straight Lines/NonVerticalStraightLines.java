@@ -130,7 +130,7 @@ public class NonVerticalStraightLines {
 	 */
 	public static double[] slopeInterceptFromTwoPoints(int x1, int y1, int x2, int y2) {
 		// Getting the slope
-		double m = (y2 - y1) / (x2 - x1);
+		double m = (double)(y2 - y1) / (x2 - x1);
 
 		// Getting the y-intercept
 		double b = interceptFromPointSlope(x1, y1, m);
@@ -165,7 +165,7 @@ public class NonVerticalStraightLines {
 	}
 
 
-	/**
+	/**z
 	 * This method takes four input parameters, the x-y coordinates of two points, and displays the 
 	 * two-point line equation with a heading
 	 * 
@@ -179,7 +179,8 @@ public class NonVerticalStraightLines {
 		System.out.println("Two-point form");
 		System.out.println("     (" + String.format("%.2f", y2) + " - " + String.format("%.2f", y1) + ")");
 		System.out.println("m = ----------------");
-		System.out.println("     (" + String.format("%.2f", x2) + " - " + String.format("%.2f", x1) + ")");	
+		System.out.println("     (" + String.format("%.2f", x2) + " - " + String.format("%.2f", x1) + ")");
+		System.out.println();	
 	}
 
 	// Raf
@@ -211,6 +212,7 @@ public class NonVerticalStraightLines {
 		// Displaying the slope-intercept form
 		System.out.println("Slope-intercept form");
 		System.out.println("y = " + String.format("%.2f", m) + "x + " + String.format("%.2f", b));
+		System.out.println();	
 	}
 
 
@@ -253,12 +255,12 @@ public class NonVerticalStraightLines {
 					 Passing the actual paramaters to the slopeInterceptFromTwoPoints function
 					 and storing it in a variable to be used in displaying the result
 					*/
-					double[] slopeAndIntercept = slopeInterceptFromTwoPoints(xOfPoint1, yOfPoint1, xOfPoint2, yOfPoint1);
+					double[] slopeAndIntercept = slopeInterceptFromTwoPoints(xOfPoint1, yOfPoint1, xOfPoint2, yOfPoint2);
 					slope = slopeAndIntercept[0];
 					intercept = slopeAndIntercept[1];
 
 					// Displaying the results by calling the displayTwoPoints and displaySlopeIntercept methods
-					diplayTwoPoints(xOfPoint1, yOfPoint1, xOfPoint2, yOfPoint1);
+					diplayTwoPoints(xOfPoint1, yOfPoint1, xOfPoint2, yOfPoint2);
 					displaySlopeIntercept(slope, intercept);
 					System.out.println();
 					break;
@@ -272,9 +274,10 @@ public class NonVerticalStraightLines {
 
 					// Getting the values of each variables
 					pointAndSlope = getPointSlope();	// Calling the getPointSlope method here
-					xCoordinate = pointAndSlope[0];
-					yCoordinate = pointAndSlope[1];
-					slope = pointAndSlope[2];
+					slope = pointAndSlope[0];
+					xCoordinate = pointAndSlope[1];
+					yCoordinate = pointAndSlope[2];
+					
 
 					/*
 					 Passing the actual paramaters to the interceptFromPointSlope function
