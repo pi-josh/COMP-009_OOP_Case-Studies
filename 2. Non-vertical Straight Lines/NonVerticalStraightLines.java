@@ -149,10 +149,19 @@ public class NonVerticalStraightLines {
 	 * @return double This return the value for the y-intercept.
 	 */
 	public static double interceptFromPointSlope(double x, double y, double m) {
-		// TODO: Calculate here
-
-		// TODO: Return value here
-		return -1; // temporary lang since may error
+		try {
+			// Calculate the y-intercept using the point-slope formula: y - y1 = m(x - x1)
+			// Rearranged to: y = mx - mx1 + y1
+			return m * (-x) + y;
+		} catch (ArithmeticException e) {
+			// Handle division by zero exception
+			System.err.println("Error: Division by zero occurred.");
+			return Double.NaN; // Returning NaN (Not a Number) to signify error
+		} catch (Exception e) {
+			// Handle any other exceptions
+			System.err.println("Error occurred: " + e.getMessage());
+			return Double.NaN; // Returning NaN for any other errors
+		}
 	}
 
 
@@ -199,11 +208,9 @@ public class NonVerticalStraightLines {
 	 * @param b This is the y-intercept of the point and the second parameter for displaySlopeIntercept
 	 */
 	public static void displaySlopeIntercept(double m, double b) {
-		// TODO: Implement the same format as the case study guide here
-		/*
-			Slope-intercept form
-			y = 0.33x + 1.66
-		*/
+		// Displaying the slope-intercept form
+		System.out.println("Slope-intercept form");
+		System.out.println("y = " + String.format("%.2f", m) + "x + " + String.format("%.2f", b));
 	}
 
 
