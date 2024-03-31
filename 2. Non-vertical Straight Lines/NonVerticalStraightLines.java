@@ -193,11 +193,9 @@ public class NonVerticalStraightLines {
 	 * @param m This is the slope of the point and the third parameter for displayPointSlope
 	 */
 	public static void displayPointSlope(double x, double y, double m) {
-		// TODO: Implement the same format as the case study guide here
-		/*
-			Point-slope form
-			y – 1.00 = 4.20 (x – 1.00)
-		*/
+		// Displaying Point-Slope form
+		System.out.println("Point-Slope form");
+     		System.out.println("\t y - " + String.format("%.2f",x)+ " = " + String.format("%.2f",m)+ " (x - " +String.format("%.2f",y)+ ")");
 	}
 
 	// Dom
