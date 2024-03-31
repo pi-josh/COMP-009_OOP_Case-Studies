@@ -37,7 +37,7 @@ public class NonVerticalStraightLines {
 		while(true) {
 			System.out.print("Select the form that you would like to convert to slope-intercept\n"
 					 + "(1) Two-point form (you know the points on the line)\n"
-					 + "(2) Point-slope form (you know the line's slope and one point\n"
+					 + "(2) Point-slope form (you know the line's slope and one point)\n"
 					 + "=> ");
 			try {
 				choice = in.nextInt();
@@ -302,6 +302,7 @@ public class NonVerticalStraightLines {
 				System.out.println("Do another conversion (Y or N) => ");
 				answer = in.next().charAt(0);
 				answer = Character.toUpperCase(answer);
+				System.out.println();
 				if(answer == 'Y') {
 					break;
 				} else if(answer == 'N') {
