@@ -91,10 +91,17 @@ public class Ohms {
 	 * @return int This return an integer value representing the resistance value of the three resistor's three bands.
 	 */
 	public static int calculateResistanceValue(String[] bandsList, int size) {
-		// TODO: Calculate here (you can comment/explain on how you come up with the solution in solving it)
-
-		// TODO: Return the value here
-		return -1; // temporary lang
+		// Declarations and Initializations
+		String[] colors = {"black", "brown", "red", "orange", "yellow", "green", "blue", "violet", "gray", "white"};
+		int[] index = new int[size];
+		for(int i = 0; i< size; i++){
+			index[i] = search(colors, bandsList[i]);
+		}
+		//Calculation to get resistance value
+		Int resistance = (index[0] * 10 + index[1]) * (int) Math.pow(10, index[2]);
+		
+		// Returning int value
+		return resistance;
 	}
 
 
