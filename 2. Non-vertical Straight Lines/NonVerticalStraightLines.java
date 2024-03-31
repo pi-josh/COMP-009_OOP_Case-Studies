@@ -313,7 +313,5 @@ public class NonVerticalStraightLines {
 				}
 			}
 		} while(answer != 'N');
-
-
 	}
 }
