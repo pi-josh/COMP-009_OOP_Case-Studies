@@ -7,7 +7,7 @@
  * 
  * @author Cassidy Fernandez, Dominic Syd Aldas, Joshua Macatunao, Rafael Lafuente
  * 
- * @version 29/03/24
+ * @version 31/03/24
  */
 
 import java.util.Scanner;
@@ -70,15 +70,16 @@ public class NonVerticalStraightLines {
     	while(true) {
 			try {
 				// Getting value for first point
-		    	System.out.println("Enter the x-y coordinates of the first point separated by a space:");
+		    	System.out.print("Enter the x-y coordinates of the first point separated by a space => ");
 		    	for (int i = 0; i < 2; i++) {
 		  			point1[i] = in.nextInt();
 		   	 	}
 				// Getting value for second point
-		    	System.out.println("Enter the x-y coordinates of the second point separated by a space:");
+		    	System.out.print("Enter the x-y coordinates of the second point separated by a space => ");
 		    	for (int i = 0; i < 2; i++) {
 					point2[i] = in.nextInt();
 		    	}
+		    	System.out.println();	
 
 		    	// Returning a multidimensional array that contains the array point 1 and 2
 		   		return new int[][] {point1, point2};
@@ -104,14 +105,15 @@ public class NonVerticalStraightLines {
 			try {
 				System.out.print("Enter the slope => ");
 				double slope = in.nextDouble();
-				System.out.println("Enter the x-y coordinates of the point separated by a space => "); 	
+				System.out.print("Enter the x-y coordinates of the point separated by a space => "); 	
 			    double xCoordinate = in.nextDouble();
 				double yCoordinate = in.nextDouble();
+				System.out.println();	
 
 				return new double[] {slope, xCoordinate, yCoordinate}; // Returning slope and x-y coordinates of the point here
 			} catch (Exception err) {
 				in.next(); // string buffer here to avoid infinite loop
-				System.err.println("\nPlease input a valid double value!");
+				System.err.println("\nPlease input a valid value!");
 				System.err.println(err + "\n");
 			}
 		} 
@@ -138,7 +140,7 @@ public class NonVerticalStraightLines {
 		return new double[] {m, b}; // Returning slope and y-intercept here
 	}
 
-	// Dom
+
 	/**
 	 * This method takes three input parameters, the x-y coordinates of one point and the 
 	 * slope, and returns as the function value the y-intercept.
@@ -165,7 +167,7 @@ public class NonVerticalStraightLines {
 	}
 
 
-	/**z
+	/**
 	 * This method takes four input parameters, the x-y coordinates of two points, and displays the 
 	 * two-point line equation with a heading
 	 * 
@@ -183,7 +185,7 @@ public class NonVerticalStraightLines {
 		System.out.println();	
 	}
 
-	// Raf
+
 	/**
 	 * This method takes three input parameters, the x-y coordinates of one point and the slope, 
 	 * and displays the point-slope line equation with a heading.
@@ -195,10 +197,11 @@ public class NonVerticalStraightLines {
 	public static void displayPointSlope(double x, double y, double m) {
 		// Displaying Point-Slope form
 		System.out.println("Point-Slope form");
-     		System.out.println("\t y - " + String.format("%.2f",x)+ " = " + String.format("%.2f",m)+ " (x - " +String.format("%.2f",y)+ ")");
+     	System.out.println("y - " + String.format("%.2f",x)+ " = " + String.format("%.2f",m)+ " (x - " +String.format("%.2f",y)+ ")");
+     	System.out.println();
 	}
 
-	// Dom
+
 	/**
 	 * This method takes two input parameters, the slope and y-intercept,
 	 * and displays the slope-intercept line equation with a heading.
