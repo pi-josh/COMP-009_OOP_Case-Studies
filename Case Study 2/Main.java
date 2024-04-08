@@ -2,7 +2,10 @@
  * This Main program creates MyData instances and utilize its methods and attributes.
  * This serves as a test program that will check the efficiency of MyDate class. 
  * 
- * @author Cassidy Fernandez, Dominic Syd Aldas, Joshua Macatunao, Rafael Lafuente
+ * @author Cassidy Fernandez
+ * @author Dominic Syd Aldas
+ * @author Joshua Macatunao
+ * @author Rafael Lafuente
  * 
  * @version April 8, 2024
  */
