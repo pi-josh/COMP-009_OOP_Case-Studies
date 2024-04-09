@@ -23,7 +23,7 @@ public class MyDate {
 	public static final String DAYS[] = {"Sunday", "Monday", "Tuesday", "Wednesday",
 									     "Thursday", "Friday", "Saturday"};
 	public static final int DAYS_IN_MONTHS[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
+	
 	@constructor
 	public MyDate(year, month, day) {
 		setDate(year, month, day);
@@ -31,9 +31,28 @@ public class MyDate {
 
 
 	// What is this?
+	public boolean isLeapYear(int year) {
+		
+	}
+
+	
+	// What is this?
+	public boolean isValidDate(int year, int month, int day) {
+		
+	}
+
+
+	// What is this?
+	public int getDayOfWeek(int year, int month, int day) {
+		
+	}
+
+
+	
+	// What is this?
 	public void setDate(int year, int month, int day) {
 		try {
-			if(isValidDate()) {
+			if(isValidDate(year, month, day)) {
 				this.year = year;
 				this.month = month;
 				this.day = day;
