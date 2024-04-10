@@ -39,10 +39,10 @@ public class MyDate {
 	 * divisible by 4 but not by 100, or it is divisible by 400.
 	 * 
 	 * @param  year  	Represents the year of the date.
-	 * @return boolean  Returns true if the given year is a leap year.
+	 * @return boolean 	Returns true if the given year is a leap year.
 	 * 					Otherwise, returns false.
 	 */
-	public boolean isLeapYear(int year) {
+	public static boolean isLeapYear(int year) {
 		if(year % 4 != 0) {
 			return false;
 		} else if(year % 100 != 0) {
@@ -65,10 +65,10 @@ public class MyDate {
 	 * @param  year  	Represents the year of the date.
 	 * @param  month 	Represents the month of the year.
 	 * @param  day 		Represents the day of the month.
-	 * @return boolean  Returns true if the given date is valid.
+	 * @return boolean 	Returns true if the given date is valid.
 	 * 					Otherwise, returns false.
 	 */
-	public boolean isValidDate(int year, int month, int day) {
+	public static boolean isValidDate(int year, int month, int day) {
 		// Declaration of variables
 		boolean isValidYear, isValidMonth, isValidDay;
 		int dayMax;
@@ -91,7 +91,7 @@ public class MyDate {
 		if(isLeapYear(year) && month == 2) {
 			dayMax = 29;
 		} else {
-			dayMax = DAYS_IN_MONTHS[month];
+			dayMax = DAYS_IN_MONTHS[month - 1];
 		}
 
 		// Checking if the given day is in the given range
@@ -110,9 +110,35 @@ public class MyDate {
 	}
 
 
-	// What is this?
-	public int getDayOfWeek(int year, int month, int day) {
-		
+	/**
+	 * This method is used to get the corresponding day of the week,
+	 * assuming that the given date is already validated.
+	 * 
+	 * @param  year  Represents the year of the date.
+	 * @param  month Represents the month of the year.
+	 * @param  day 	 Represents the day of the month.
+	 * @return int 	 Returns the day of the week, where 0 for Sun,
+	 * 				 1 for Mon, ..., 6 for Sat, for the given date.
+	 */
+	public static int getDayOfWeek(int year, int month, int day) {
+		// Declaration of variables
+		int dayOfWeek, m;
+
+		// Lookup table of month offsets where index 0 = Jan, 1 = Feb, ..., 11 = Dec
+		final int COMMON_YEAR[] = {0, 3, 3, 6, 1, 4, 6, 2, 5, 0, 3, 5};
+		final int LEAP_YEAR[] = {0, 3, 4, 0, 2, 5, 0, 3, 6, 1, 4, 6};
+
+		// Determining the month-related offset m by using the lookup table with month
+		if(isLeapYear(year)) {
+			m = LEAP_YEAR[month - 1];
+		} else {
+			m = COMMON_YEAR[month - 1];
+		}
+
+		// Determining the day-of-week using Gauss's algorithm based on Gregorian calendar
+		dayOfWeek = (day + m + 5 * ((year - 1)%4) + 4 * ((year - 1)%100) + 6 * ((year - 1)%400))%7;
+
+		return dayOfWeek; // returning value here
 	}
 
 
@@ -127,7 +153,7 @@ public class MyDate {
 	 * @throws IllegalArgumentException If one of the
 	 * 									parameter is invalidated
 	 */
-	public void setDate(int year, int month, int day) {
+	public static void setDate(int year, int month, int day) {
 		try {
 			if(isValidDate(year, month, day)) {
 				this.year = year;
@@ -152,7 +178,7 @@ public class MyDate {
 	 * @throws IllegalArgumentException If the value is not
 	 * 									in the given range
 	 */
-	public void setYear(int year) {
+	public static void setYear(int year) {
 		try{
 			if(year >= 1 && year <= 9999) {
 				this.year = year;
@@ -175,7 +201,7 @@ public class MyDate {
 	 * @throws IllegalArgumentException If the value is not
 	 * 									in the given range
 	 */
-	public void setMonth(int month) {
+	public static void setMonth(int month) {
 		try{
 			if(month >= 1 && month <= 12) {
 				this.month = month;
@@ -199,13 +225,13 @@ public class MyDate {
 	 * @throws IllegalArgumentException If the value is not
 	 * 									in the given range
 	 */
-	public void setDay(int day) {
+	public static void setDay(int day) {
 		// Getting the maximum days that a particular month can have
 		int dayMax;
 		if(isLeapYear(year) && month == 2) {
 			dayMax = 29;
 		} else {
-			dayMax = DAYS_IN_MONTHS[month];
+			dayMax = DAYS_IN_MONTHS[month - 1];
 		}
 
 		try{
@@ -222,25 +248,25 @@ public class MyDate {
 
 
 	// What is this?
-	public int getYear() {
+	public static int getYear() {
 		return year;
 	}
 
 
 	// What is this?
-	public int getMonth() {
+	public static int getMonth() {
 		return month;
 	}
 
 
 	// What is this?
-	public int getDay() {
+	public static int getDay() {
 		return day;
 	}
 
 
 	// What is this?
-	public String toString() {
+	public static String toString() {
 		// Format something here
 
 		// Return something here
@@ -248,7 +274,7 @@ public class MyDate {
 
 
 	// What is this?
-	public String nextDay() {
+	public static String nextDay() {
 		// toString() method will be used here(?)
 
 		// Return something here
@@ -256,7 +282,7 @@ public class MyDate {
 
 
 	// What is this?
-	public String nextMonth() {
+	public static String nextMonth() {
 		// toString() method will be used here(?)
 
 		// Return something here
@@ -264,7 +290,7 @@ public class MyDate {
 
 
 	// What is this?
-	public String nextYear() {
+	public static String nextYear() {
 		// toString() method will be used here(?)
 
 		// Return something here
@@ -272,7 +298,7 @@ public class MyDate {
 
 
 	// What is this?
-	public String previousDay() {
+	public static String previousDay() {
 		// toString() method will be used here(?)
 
 		// Return something here
@@ -280,7 +306,7 @@ public class MyDate {
 
 
 	// What is this?
-	public String previousMonth() {
+	public static String previousMonth() {
 		// toString() method will be used here(?)
 
 		// Return something here
@@ -288,7 +314,7 @@ public class MyDate {
 
 
 	// What is this?
-	public String previousYear() {
+	public static String previousYear() {
 		// toString() method will be used here(?)
 
 		// Return something here
