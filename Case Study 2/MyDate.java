@@ -34,13 +34,15 @@ public class MyDate {
 
 
 	/**
-	 * This method is used to set the date once validated by the isValidDate method.
-	 * Otherwise, it will throw an exception.
+	 * This method is used to set the date once validated
+	 * by the isValidDate method. Otherwise,
+	 * it willthrow an exception.
 	 * 
 	 * @param year  Represents the year of the date.
 	 * @param month Represents the month of the year.
 	 * @param day 	Represents the day of the month.
-	 * @throws IllegalArgumentException If one of the parameter is invalidated
+	 * @throws IllegalArgumentException If one of the
+	 * 									parameter is invalidated
 	 */
 	public void setDate(int year, int month, int day) {
 		try {
@@ -53,39 +55,68 @@ public class MyDate {
 			}
 		} catch (IllegalArgumentException e) {
 			System.err.println("Invalid year, month, or day!");
+			System.err.println(e + "\n");
 		}
 	}
 
 
-	// What is this?
+	/**
+	 * This method changes the value of year instance variable
+	 * if the given year is between 1 and 9999. Otherwise,
+	 * it shall throw an exception with a message
+	 * 
+	 * @param year Represents the year of the date.
+	 * @throws IllegalArgumentException If the value is not
+	 * 									in the given range
+	 */
 	public void setYear(int year) {
 		try{
-			if() {
-
+			if(year >= 1 && year <= 9999) {
+				this.year = year;
 			} else {
 				throw IllegalArgumentException;
 			}
 		} catch {
 			System.err.println("Invalid year!");
+			System.err.println(e + "\n");
 		}
 	}
 
 
-	// What is this?
+	/**
+	 * This method changes the value of month instance variable
+	 * if the given month is between 1 and 12. Otherwise,
+	 * it shall throw an exception with a message
+	 * 
+	 * @param month Represents the month of the year.
+	 * @throws IllegalArgumentException If the value is not
+	 * 									in the given range
+	 */
 	public void setMonth(int month) {
 		try{
-			if() {
-
+			if(month >= 1 && month <= 12) {
+				this.month = month;
 			} else {
 				throw IllegalArgumentException;
 			}
 		} catch {
 			System.err.println("Invalid month!");
+			System.err.println(e + "\n");
 		}
 	}
 
 
-	// What is this?
+	/**
+	 * This method changes the value of day instance variable
+	 * if the given day is between 1 and dayMax, where dayMax
+	 * depends on the month and whether it is a leap year for Feb.
+	 * Otherwise, it shall throw an exception with a message
+	 * 
+	 * @param day Represents the day of the month.
+	 * @throws IllegalArgumentException If the value is not
+	 * 									in the given range
+	 */
+	// may kulang pa rito
 	public void setDay(int day) {
 		try{
 			if() {
@@ -95,6 +126,7 @@ public class MyDate {
 			}
 		} catch {
 			System.err.println("Invalid day!");
+			System.err.println(e + "\n");
 		}
 	}
 
