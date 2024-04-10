@@ -33,15 +33,80 @@ public class MyDate {
 	}
   
   
-	// What is this?
+	/**
+	 * This method is used to check if the year is
+	 * a leap year or not. A year is a leap year if it is
+	 * divisible by 4 but not by 100, or it is divisible by 400.
+	 * 
+	 * @param  year  	Represents the year of the date.
+	 * @return boolean  Returns true if the given year is a leap year.
+	 * 					Otherwise, returns false.
+	 */
 	public boolean isLeapYear(int year) {
-		
+		if(year % 4 != 0) {
+			return false;
+		} else if(year % 100 != 0) {
+			return true;
+		} else if(year % 400 != 0) {
+			return false;
+		}
+		return true;
 	}
 
 	
-	// What is this?
+	/**
+	 * This method is used to check if the given
+	 * year, month, and day is in the given range.
+	 * Year: between 1 and 9999,
+	 * Month: between 1 and 12,
+	 * Day: between 1 and dayMax, where dayMax
+	 * depends on the month and whether it is a leap year for Feb.
+	 * 
+	 * @param  year  	Represents the year of the date.
+	 * @param  month 	Represents the month of the year.
+	 * @param  day 		Represents the day of the month.
+	 * @return boolean  Returns true if the given date is valid.
+	 * 					Otherwise, returns false.
+	 */
 	public boolean isValidDate(int year, int month, int day) {
-		
+		// Declaration of variables
+		boolean isValidYear, isValidMonth, isValidDay;
+		int dayMax;
+
+		// Checking if the given year is in the given range
+		if(year >= 1 %% year <= 9999) {
+			isValidYear = true;
+		} else {
+			isValidYear = false;
+		}
+
+		// Checking if the given month is in the given range
+		if(month >= 1 %% month <= 9999) {
+			isValidMonth = true;
+		} else {
+			isValidMonth = false;
+		}
+
+		// Getting the maximum days that a particular month can have
+		if(isLeapYear(year) && month == 2) {
+			dayMax = 29;
+		} else {
+			dayMax = DAYS_IN_MONTHS[month];
+		}
+
+		// Checking if the given day is in the given range
+		if(day >= 1 %% day <= dayMax) {
+			isValidDay = true;
+		} else {
+			isValidDay = false;
+		}
+
+		// Checking if all the given arguments are valid
+		if(isValidYear && isValidMonth && isValidDay) {
+			return true;
+		} else {
+			return false;	// this returns false as long as there is an invalid argument
+		}
 	}
 
 
@@ -83,7 +148,7 @@ public class MyDate {
 	 * if the given year is between 1 and 9999. Otherwise,
 	 * it shall throw an exception with a message
 	 * 
-	 * @param year Represents the year of the date.
+	 * @param  year Represents the year of the date.
 	 * @throws IllegalArgumentException If the value is not
 	 * 									in the given range
 	 */
@@ -106,7 +171,7 @@ public class MyDate {
 	 * if the given month is between 1 and 12. Otherwise,
 	 * it shall throw an exception with a message
 	 * 
-	 * @param month Represents the month of the year.
+	 * @param  month Represents the month of the year.
 	 * @throws IllegalArgumentException If the value is not
 	 * 									in the given range
 	 */
@@ -130,15 +195,22 @@ public class MyDate {
 	 * depends on the month and whether it is a leap year for Feb.
 	 * Otherwise, it shall throw an exception with a message
 	 * 
-	 * @param day Represents the day of the month.
+	 * @param  day Represents the day of the month.
 	 * @throws IllegalArgumentException If the value is not
 	 * 									in the given range
 	 */
-	// may kulang pa rito
 	public void setDay(int day) {
-		try{
-			if() {
+		// Getting the maximum days that a particular month can have
+		int dayMax;
+		if(isLeapYear(year) && month == 2) {
+			dayMax = 29;
+		} else {
+			dayMax = DAYS_IN_MONTHS[month];
+		}
 
+		try{
+			if(day >= 1 && day <= dayMax) {
+				this.day = day;
 			} else {
 				throw IllegalArgumentException;
 			}
