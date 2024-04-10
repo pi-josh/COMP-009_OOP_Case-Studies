@@ -31,6 +31,24 @@ public class MyDate {
 	public MyDate(year, month, day) {
 		setDate(year, month, day);	// Calling setDate method here
 	}
+  
+  
+	// What is this?
+	public boolean isLeapYear(int year) {
+		
+	}
+
+	
+	// What is this?
+	public boolean isValidDate(int year, int month, int day) {
+		
+	}
+
+
+	// What is this?
+	public int getDayOfWeek(int year, int month, int day) {
+		
+	}
 
 
 	/**
@@ -46,7 +64,7 @@ public class MyDate {
 	 */
 	public void setDate(int year, int month, int day) {
 		try {
-			if(isValidDate()) {
+			if(isValidDate(year, month, day)) {
 				this.year = year;
 				this.month = month;
 				this.day = day;
