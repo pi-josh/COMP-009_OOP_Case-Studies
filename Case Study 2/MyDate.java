@@ -8,7 +8,7 @@
  * @author Joshua Macatunao
  * @author Rafael Lafuente
  * 
- * @version April 8, 2024
+ * @version April 12, 2024
  */
 
 public class MyDate {
@@ -420,6 +420,7 @@ public class MyDate {
 			month = 12;
 			year -= 1;
 		}
+		day = DAYS_IN_MONTHS[month - 1];
 
 		// Getting the formatted date string
 		String stringDate = toString();		// calling the toString method here
@@ -437,7 +438,8 @@ public class MyDate {
 	public String previousYear() {
 		// Getting the previous year of the current date
 		year -= 1;
-
+		day = DAYS_IN_MONTHS[month - 1];
+		
 		// Checking if the previous year is not a leap year
 		if(!isLeapYear(year) && day == 29) {
 			day = 28;
