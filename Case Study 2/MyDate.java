@@ -27,8 +27,7 @@ public class MyDate {
 	/**
 	 * A class constructor that will set the date
 	 */ 
-	@constructor
-	public MyDate(year, month, day) {
+	public MyDate(int year, int month, int day) {
 		setDate(year, month, day);	// Calling setDate method here
 	}
   
@@ -74,14 +73,14 @@ public class MyDate {
 		int dayMax;
 
 		// Checking if the given year is in the given range
-		if(year >= 1 %% year <= 9999) {
+		if(year >= 1 && year <= 9999) {
 			isValidYear = true;
 		} else {
 			isValidYear = false;
 		}
 
 		// Checking if the given month is in the given range
-		if(month >= 1 %% month <= 9999) {
+		if(month >= 1 && month <= 9999) {
 			isValidMonth = true;
 		} else {
 			isValidMonth = false;
@@ -95,7 +94,7 @@ public class MyDate {
 		}
 
 		// Checking if the given day is in the given range
-		if(day >= 1 %% day <= dayMax) {
+		if(day >= 1 && day <= dayMax) {
 			isValidDay = true;
 		} else {
 			isValidDay = false;
@@ -153,14 +152,14 @@ public class MyDate {
 	 * @throws IllegalArgumentException If one of the
 	 * 									parameter is invalidated
 	 */
-	public static void setDate(int year, int month, int day) {
+	public void setDate(int year, int month, int day) {
 		try {
 			if(isValidDate(year, month, day)) {
 				this.year = year;
 				this.month = month;
 				this.day = day;
 			} else {
-				throw IllegalArgumentException;
+				throw new IllegalArgumentException();
 			}
 		} catch (IllegalArgumentException e) {
 			System.err.println("Invalid year, month, or day!");
@@ -178,14 +177,14 @@ public class MyDate {
 	 * @throws IllegalArgumentException If the value is not
 	 * 									in the given range
 	 */
-	public static void setYear(int year) {
+	public void setYear(int year) {
 		try{
 			if(year >= 1 && year <= 9999) {
 				this.year = year;
 			} else {
-				throw IllegalArgumentException;
+				throw new IllegalArgumentException();
 			}
-		} catch {
+		} catch(IllegalArgumentException e) {
 			System.err.println("Invalid year!");
 			System.err.println(e + "\n");
 		}
@@ -201,14 +200,14 @@ public class MyDate {
 	 * @throws IllegalArgumentException If the value is not
 	 * 									in the given range
 	 */
-	public static void setMonth(int month) {
+	public void setMonth(int month) {
 		try{
 			if(month >= 1 && month <= 12) {
 				this.month = month;
 			} else {
-				throw IllegalArgumentException;
+				throw new IllegalArgumentException();
 			}
-		} catch {
+		} catch(IllegalArgumentException e) {
 			System.err.println("Invalid month!");
 			System.err.println(e + "\n");
 		}
@@ -225,7 +224,7 @@ public class MyDate {
 	 * @throws IllegalArgumentException If the value is not
 	 * 									in the given range
 	 */
-	public static void setDay(int day) {
+	public void setDay(int day) {
 		// Getting the maximum days that a particular month can have
 		int dayMax;
 		if(isLeapYear(year) && month == 2) {
@@ -238,9 +237,9 @@ public class MyDate {
 			if(day >= 1 && day <= dayMax) {
 				this.day = day;
 			} else {
-				throw IllegalArgumentException;
+				throw new IllegalArgumentException();
 			}
-		} catch {
+		} catch(IllegalArgumentException e) {
 			System.err.println("Invalid day!");
 			System.err.println(e + "\n");
 		}
@@ -248,28 +247,29 @@ public class MyDate {
 
 
 	// What is this?
-	public static int getYear() {
-		return year;
+	public int getYear() {
+		return this.year;
 	}
 
 
 	// What is this?
-	public static int getMonth() {
-		return month;
+	public int getMonth() {
+		return this.month;
 	}
 
 
 	// What is this?
-	public static int getDay() {
-		return day;
+	public int getDay() {
+		return this.day;
 	}
 
 
 	// What is this?
-	public static String toString() {
+	public String toString() {
 		// Format something here
 
 		// Return something here
+		return "";
 	}
 
 
@@ -278,6 +278,7 @@ public class MyDate {
 		// toString() method will be used here(?)
 
 		// Return something here
+		return "";
 	}
 
 
@@ -286,6 +287,7 @@ public class MyDate {
 		// toString() method will be used here(?)
 
 		// Return something here
+		return "";
 	}
 
 
@@ -294,6 +296,7 @@ public class MyDate {
 		// toString() method will be used here(?)
 
 		// Return something here
+		return "";
 	}
 
 
@@ -302,6 +305,7 @@ public class MyDate {
 		// toString() method will be used here(?)
 
 		// Return something here
+		return "";
 	}
 
 
@@ -310,6 +314,7 @@ public class MyDate {
 		// toString() method will be used here(?)
 
 		// Return something here
+		return "";
 	}
 
 
@@ -318,5 +323,6 @@ public class MyDate {
 		// toString() method will be used here(?)
 
 		// Return something here
+		return "";
 	}
 }
