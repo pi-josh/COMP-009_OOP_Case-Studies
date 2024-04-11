@@ -163,7 +163,6 @@ public class MyDate {
 			}
 		} catch (IllegalArgumentException e) {
 			System.err.println("Invalid year, month, or day!");
-			System.err.println(e + "\n");
 		}
 	}
 
@@ -186,7 +185,6 @@ public class MyDate {
 			}
 		} catch(IllegalArgumentException e) {
 			System.err.println("Invalid year!");
-			System.err.println(e + "\n");
 		}
 	}
 
@@ -209,7 +207,6 @@ public class MyDate {
 			}
 		} catch(IllegalArgumentException e) {
 			System.err.println("Invalid month!");
-			System.err.println(e + "\n");
 		}
 	}
 
@@ -241,88 +238,214 @@ public class MyDate {
 			}
 		} catch(IllegalArgumentException e) {
 			System.err.println("Invalid day!");
-			System.err.println(e + "\n");
 		}
 	}
 
 
-	// What is this?
+	/**
+	 * This method returns the current value of the year of the date
+	 * of the current instance class
+	 * 
+	 * @return int Returns the year of the date.
+	 */
 	public int getYear() {
 		return this.year;
 	}
 
 
-	// What is this?
+	/**
+	 * This method returns the current value of the month of the year
+	 * of the current instance class
+	 * 
+	 * @return int Returns the month of the year.
+	 */
 	public int getMonth() {
 		return this.month;
 	}
 
 
-	// What is this?
+	/**
+	 * This method returns the current value of the day of the month
+	 * of the current instance class
+	 * 
+	 * @return int Returns the day of the month.
+	 */
 	public int getDay() {
 		return this.day;
 	}
 
 
-	// What is this?
+	/**
+	 * This method formats the current date to return a clean output.
+	 * The string is in the format: "xxxday d mmm yyyy", for example, "Tuesday 14 Feb 2012".
+	 * 
+	 * @return String Returns the formatted string of the current date.
+	 */
 	public String toString() {
-		// Format something here
+		// Initialization of variables
+		String stringMonth = MONTHS[month - 1];
+		String dayOfWeek = DAYS[getDayOfWeek(year, month, day)];	// calling the getDayOfWeek method here
 
-		// Return something here
-		return "";
+		// Formatting the string here
+		String stringDate = String.format("%s %d %s %d", dayOfWeek, day, stringMonth, year);
+		
+		return stringDate;	// returning value here
 	}
 
 
-	// What is this?
-	public static String nextDay() {
-		// toString() method will be used here(?)
+	/**
+	 * This method formats the date a day after the current date to return a clean output.
+	 * The string is in the format: "xxxday d mmm yyyy", for example, "Tuesday 14 Feb 2012".
+	 * 
+	 * @return String Returns the formatted string of the date a day after the current date.
+	 */
+	public String nextDay() {
+		// Getting the maximum day of the current month
+		int dayMax;
+		if(isLeapYear(year) && month == 2) {
+			dayMax = 29;
+		} else {
+			dayMax = DAYS_IN_MONTHS[month - 1];
+		}
 
-		// Return something here
-		return "";
+		// Getting the next day of the current date
+		day += 1;
+		if(day > dayMax) {
+			day -= dayMax;
+			month += 1;
+			if(month > 12) {
+				month -= 12;
+				year += 1;
+			}
+		}
+
+		// Getting the formatted date string
+		String stringDate = toString();		// calling the toString method here
+		
+		return stringDate;	// returning value here
 	}
 
 
-	// What is this?
-	public static String nextMonth() {
-		// toString() method will be used here(?)
+	/**
+	 * This method formats the date a month after the current date to return a clean output.
+	 * The string is in the format: "xxxday d mmm yyyy", for example, "Tuesday 14 Feb 2012".
+	 * 
+	 * @return String Returns the formatted string of the date a month after the current date.
+	 */
+	public String nextMonth() {
+		// Getting the next month of the current date
+		month += 1;
+		if(month > 12) {
+			month -= 12;
+			year += 1;
+		}
 
-		// Return something here
-		return "";
+		// Getting the formatted date string
+		String stringDate = toString();		// calling the toString method here
+		
+		return stringDate;	// returning value here
 	}
 
 
-	// What is this?
-	public static String nextYear() {
-		// toString() method will be used here(?)
+	/**
+	 * This method formats the date a year after the current date to return a clean output.
+	 * The string is in the format: "xxxday d mmm yyyy", for example, "Tuesday 14 Feb 2012".
+	 * 
+	 * @return String Returns the formatted string of the date a year after the current date.
+	 */
+	public String nextYear() {
+		// Getting the next year of the current date
+		year += 1;
 
-		// Return something here
-		return "";
+		// Checking if the next year is not a leap year
+		if(!isLeapYear(year) && day == 29) {
+			day = 28;
+		}
+
+		// Getting the formatted date string
+		String stringDate = toString();		// calling the toString method here
+		
+		return stringDate;	// returning value here
 	}
 
 
-	// What is this?
-	public static String previousDay() {
-		// toString() method will be used here(?)
+	/**
+	 * This method formats the date a day before the current date to return a clean output.
+	 * The string is in the format: "xxxday d mmm yyyy", for example, "Tuesday 14 Feb 2012".
+	 * 
+	 * @return String Returns the formatted string of the date a day before the current date.
+	 */
+	public String previousDay() {
+		// Getting the maximum day of the current month
+		int dayMax;
+		if(isLeapYear(year) && month == 2) {
+			dayMax = 29;
+		} else {
+			dayMax = DAYS_IN_MONTHS[month - 1];
+		}
 
-		// Return something here
-		return "";
+		// Getting the previous day of the current date
+		day -= 1;
+		if(day == 0) {
+			if(isLeapYear(year) && month == 2) {
+				dayMax = 29;
+			} else {
+				dayMax = DAYS_IN_MONTHS[month - 1];
+			}
+			day = dayMax;
+			month -= 1;
+			if(month == 0) {
+				month = 12;
+				year -= 1;
+			}
+		}
+
+		// Getting the formatted date string
+		String stringDate = toString();		// calling the toString method here
+		
+		return stringDate;	// returning value here
 	}
 
 
-	// What is this?
-	public static String previousMonth() {
-		// toString() method will be used here(?)
+	/**
+	 * This method formats the date a month before the current date to return a clean output.
+	 * The string is in the format: "xxxday d mmm yyyy", for example, "Tuesday 14 Feb 2012".
+	 * 
+	 * @return String Returns the formatted string of the date a month before the current date.
+	 */
+	public String previousMonth() {
+		// Getting the previous month of the current date
+		month -= 1;
+		if(month == 0) {
+			month = 12;
+			year -= 1;
+		}
 
-		// Return something here
-		return "";
+		// Getting the formatted date string
+		String stringDate = toString();		// calling the toString method here
+		
+		return stringDate;	// returning value here
 	}
 
 
-	// What is this?
-	public static String previousYear() {
-		// toString() method will be used here(?)
+	/**
+	 * This method formats the date a year before the current date to return a clean output.
+	 * The string is in the format: "xxxday d mmm yyyy", for example, "Tuesday 14 Feb 2012".
+	 * 
+	 * @return String Returns the formatted string of the date a year before the current date.
+	 */
+	public String previousYear() {
+		// Getting the previous year of the current date
+		year -= 1;
 
-		// Return something here
-		return "";
+		// Checking if the previous year is not a leap year
+		if(!isLeapYear(year) && day == 29) {
+			day = 28;
+		}
+
+		// Getting the formatted date string
+		String stringDate = toString();		// calling the toString method here
+		
+		return stringDate;	// returning value here
 	}
 }
