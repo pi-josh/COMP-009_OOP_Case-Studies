@@ -11,12 +11,8 @@
  */
 
 public class Main {
-	/*
-	 * Documentation here
-	 */
 	public static void main(String[] args) {
-
-		// lorem ipsum
+		// First instance of the MyDate class
 		MyDate d1 = new MyDate(2012, 2, 28);
 		System.out.println(d1);
 		System.out.println(d1.nextDay());
@@ -24,7 +20,7 @@ public class Main {
 		System.out.println(d1.nextMonth());
 		System.out.println(d1.nextYear());
 
-		// lorem ipsum
+		// Second instance of the MyDate class
 		MyDate d2 = new MyDate(2012, 1, 2);
 		System.out.println(d2);
 		System.out.println(d2.previousDay());
@@ -32,10 +28,14 @@ public class Main {
 		System.out.println(d2.previousMonth());
 		System.out.println(d2.previousYear());
 
-		// lorem ipsum
+		// Third instance of the MyDate class
 		MyDate d3 = new MyDate(2012, 2, 29);
 		System.out.println(d3.previousYear());
 
+		/*
+		 For checking the exception handling when instantiating with an invalid date.
+		 Just remove the "//" to run the line of code.
+		*/
 		// MyDate d4 = new MyDate(2099, 11, 31);
 		// MyDate d5 = new MyDate(2011, 2, 29);
 	}
