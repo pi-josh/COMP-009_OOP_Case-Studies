@@ -14,6 +14,7 @@ public class Main {
 	public static void main(String[] args) {
 		// First instance of the MyDate class
 		MyDate d1 = new MyDate(2012, 2, 28);
+		System.out.println("Printing d1 instance:");
 		System.out.println(d1);				// Tuesday 28 Feb 2012
 		System.out.println(d1.nextDay());	// Wednesday 29 Feb 2012
 		System.out.println(d1.nextDay());	// Thursday 1 Mar 2012
@@ -23,6 +24,7 @@ public class Main {
 
 		// Second instance of the MyDate class
 		MyDate d2 = new MyDate(2012, 1, 2);
+		System.out.println("Printing d2 instance:");
 		System.out.println(d2);					// Monday 2 Jan 2012
 		System.out.println(d2.previousDay());	// Sunday 1 Jan 2012
 		System.out.println(d2.previousDay());	// Saturday 31 Dec 2011
@@ -32,6 +34,7 @@ public class Main {
 
 		// Third instance of the MyDate class
 		MyDate d3 = new MyDate(2012, 2, 29);
+		System.out.println("Printing d3 instance:");
 		System.out.println(d3.previousYear());	// Monday 28 Feb 2011
 		System.out.println();
 
@@ -41,6 +44,14 @@ public class Main {
 		*/
 		// MyDate d4 = new MyDate(2099, 11, 31);	// Invalid year, month, or day!
 		// MyDate d5 = new MyDate(2011, 2, 29);		// Invalid year, month, or day!
-		System.out.println();
+		// System.out.println();
+
+		// Printing the dates in a loop from 28 Dec 2011 to 2 Mar 2012
+		MyDate d6 = new MyDate(2011, 12, 28);
+		System.out.println("Printing d6 instance:");
+		System.out.println(d6);
+		while(d6.getYear() != 2012 || d6.getMonth() != 3 || d6.getDay() != 2) {
+			System.out.println(d6.nextDay());
+		}
 	}
 }
