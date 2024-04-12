@@ -1,5 +1,5 @@
 /**
- * This Main program creates MyData instances and utilize its methods and attributes.
+ * This Main program creates MyDate instances and utilize its methods and attributes.
  * This serves as a test program that will check the efficiency of MyDate class. 
  * 
  * @author Cassidy Fernandez
