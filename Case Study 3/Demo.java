@@ -81,6 +81,7 @@ class Fruitingms extends Fruit {
      * @return boolean Returns true if available, false otherwise
      */
     public boolean checkAvailability(double need) {
+    	//write your code here
         return available_kgs >= need;
     }
 
@@ -91,6 +92,7 @@ class Fruitingms extends Fruit {
      * @param need Represents the kilograms of fruit purchased
      */
     public void updateAvailability(double need) {
+    	//write your code here
         available_kgs -= need;
     }
 } //end class Fruitingms
@@ -111,6 +113,7 @@ class Fruitinpcs extends Fruit {
      * @param price_per_piece Represents the price per piece of the fruit
      */
     Fruitinpcs(String name, double available_pcs, double price_per_piece) {
+        //write your code here
         super(name);
         this.available_pcs = available_pcs;
         this.price_per_piece = price_per_piece;
@@ -135,6 +138,7 @@ class Fruitinpcs extends Fruit {
      * @return boolean Returns true if available, false otherwise
      */
     public boolean checkAvailability(double need) {
+    	// write your code here
         return available_pcs >= need;
     }
 
@@ -178,6 +182,7 @@ class Sale {
      * @return double Returns the bill amount.
      */
     public double bill() {
+    	//write your code here
         if (!(fobj instanceof Fruitingms)) {
             System.out.println("Item not available");
             return 0.0;
@@ -201,7 +206,7 @@ class Sale {
      * @return double Returns the discounted amount.
      */
     public double discount() {
-        int disc = (int) amount / 100 * 5;
+        int disc = amount / 100 * 5;
         amount -= disc;
         return amount;
     }
