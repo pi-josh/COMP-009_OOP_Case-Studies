@@ -25,7 +25,7 @@ public class MyDate {
 	public static final int DAYS_IN_MONTHS[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 	/**
-	 * A class constructor that will set the date
+	 * A class constructor that will initialize the date
 	 */ 
 	public MyDate(int year, int month, int day) {
 		setDate(year, month, day);	// Calling setDate method here
@@ -281,6 +281,7 @@ public class MyDate {
 	 * 
 	 * @return String Returns the formatted string of the current date.
 	 */
+	@Override
 	public String toString() {
 		// Initialization of variables
 		String stringMonth = MONTHS[month - 1];
