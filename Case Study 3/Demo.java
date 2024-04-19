@@ -206,7 +206,7 @@ class Sale {
      * @return double Returns the discounted amount.
      */
     public double discount() {
-        int disc = amount / 100 * 5;
+        double disc = amount / 100 * 5;
         amount -= disc;
         return amount;
     }
@@ -222,7 +222,7 @@ class Demo {
         Sale s = new Sale(fobj, 2.0);
         System.out.println(s.bill());
         Fruit fobj1 = new Fruitinpcs("banana", 200, 3.0);
-        Sale s1 = new Sale(fobj, 10);
+        Sale s1 = new Sale(fobj1, 10);
         System.out.println(s1.bill());
     }
 }
