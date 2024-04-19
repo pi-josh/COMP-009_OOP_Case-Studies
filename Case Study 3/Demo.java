@@ -182,23 +182,32 @@ class Sale {
      * @return double Returns the bill amount.
      */
     public double bill() {
-    	//write your code here
-        if (!(fobj instanceof Fruitingms)) {
-            System.out.println("Item not available");
-            return 0.0;
+        //write your code here
+        if (fobj instanceof Fruitingms) {
+            Fruitingms fruit = (Fruitingms) fobj;
+            if (!fruit.checkavailability(unit)) {
+                System.out.println("Item not available");
+                return 0.0;
+            }
+            amount = fruit.getprice() * unit;
+            if (amount > 1500) {
+                amount = discount();
+            }
+            fruit.updateavailability(unit);
+        } else if (fobj instanceof Fruitinpcs) {
+            Fruitinpcs fruit = (Fruitinpcs) fobj;
+            if (!fruit.checkavailability(unit)) {
+                System.out.println("Item not available");
+                return 0.0;
+            }
+            amount = fruit.getprice() * unit;
+            if (amount > 1500) {
+                amount -= discount();
+            }
+            fruit.updateavailability(unit);
         }
-        if (!((Fruitingms) fobj).checkAvailability(unit)) {
-            System.out.println("Item not available");
-            return 0.0;
-        }
-        amount = ((Fruitingms) fobj).getPrice() * unit;
-        if (amount > 1500) {
-            amount = discount();
-        }
-        ((Fruitingms) fobj).updateAvailability(unit);
         return amount;
     }
-
 
     /**
      * Applies a discount if the bill amount is above P1500.00.
