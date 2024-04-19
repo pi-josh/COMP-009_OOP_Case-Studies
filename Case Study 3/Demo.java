@@ -68,7 +68,7 @@ class Fruitingms extends Fruit {
      *
      * @return double The price per kilogram of the fruit.
      */
-    public double getPrice() {
+    public double getprice() {
         return price_per_kg;
     }
 
@@ -80,7 +80,7 @@ class Fruitingms extends Fruit {
      * 
      * @return boolean Returns true if available, false otherwise
      */
-    public boolean checkAvailability(double need) {
+    public boolean checkavailability(double need) {
     	//write your code here
         return available_kgs >= need;
     }
@@ -91,7 +91,7 @@ class Fruitingms extends Fruit {
      *
      * @param need Represents the kilograms of fruit purchased
      */
-    public void updateAvailability(double need) {
+    public void updateavailability(double need) {
     	//write your code here
         available_kgs -= need;
     }
@@ -125,7 +125,7 @@ class Fruitinpcs extends Fruit {
      *
      * @return double The price per piece of the fruit.
      */
-    public double getPrice() {
+    public double getprice() {
         return price_per_piece;
     }
 
@@ -137,7 +137,7 @@ class Fruitinpcs extends Fruit {
      * 
      * @return boolean Returns true if available, false otherwise
      */
-    public boolean checkAvailability(double need) {
+    public boolean checkavailability(double need) {
     	// write your code here
         return available_pcs >= need;
     }
@@ -148,7 +148,7 @@ class Fruitinpcs extends Fruit {
      *
      * @param need Represents the pieces of fruit purchased
      */
-    public void updateAvailability(double need) {
+    public void updateavailability(double need) {
         available_pcs -= need;
     }
 } //end class Fruitinpcs
@@ -215,7 +215,7 @@ class Sale {
      * @return double Returns the discounted amount.
      */
     public double discount() {
-        int disc = amount / 100 * 5;
+        double disc = amount / 100 * 5;
         amount -= disc;
         return amount;
     }
