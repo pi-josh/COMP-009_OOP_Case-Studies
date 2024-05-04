@@ -8,7 +8,7 @@
  * 
  * @author Cassidy Fernandez, Dominic Syd Aldas, Joshua Macatunao, Rafael Lafuente
  * 
- * @version 29/03/24
+ * @version 31/03/24
  */
 
 
@@ -55,7 +55,7 @@ public class Ohms {
     	return bandsList;
 	}
 
-	// Cas
+
 	/**
 	 * This method is used as a helper function to check
 	 * if the band inputted by the user exist in the list.
@@ -63,7 +63,7 @@ public class Ohms {
 	 * otherwise returns -1.
 	 * 
 	 * @param COLOR_CODES This is an array of strings representing the available colors and the first parameter for calculateResistanceValue method
-	 * @param size This represent the size of the array bandsList
+	 * @param size This represent the size of the array COLOR_CODES
 	 * @param target This represent the target band that will be searched through the list
 	 * 
 	 * @return int This return an integer value that will determine if the target band is in the list.
@@ -81,20 +81,28 @@ public class Ohms {
 		return -1;
 	}
 
-	// Raf
+
 	/**
 	 * This method is used to calculate the resistance value of the resistor's three bands.
 	 * 
 	 * @param bandsList This is an array of strings representing the color of the resistor's three bands and the first parameter for calculateResistanceValue method
-	 * @param size This represent the size of the array bandsListand the second parameter for calculateResistanceValue method
+	 * @param size This represent the size of the array bandsList and the second parameter for calculateResistanceValue method
 	 * 
 	 * @return int This return an integer value representing the resistance value of the three resistor's three bands.
 	 */
 	public static int calculateResistanceValue(String[] bandsList, int size) {
-		// TODO: Calculate here (you can comment/explain on how you come up with the solution in solving it)
+		// Declarations and initializations
+		final String[] COLOR_CODES = {"black", "brown", "red", "orange", "yellow", "green", "blue", "violet", "gray", "white"};
+		int[] index = new int[size];
+		for(int i = 0; i < size; i++){
+			index[i] = searchBand(COLOR_CODES, COLOR_CODES.length, bandsList[i]);
+		}
 
-		// TODO: Return the value here
-		return -1; // temporary lang
+		//Calculation to get resistance value
+		int resistance = (index[0] * 10 + index[1]) * (int) Math.pow(10, index[2]);
+		
+		// Returning int value
+		return resistance / 1000; 	// The resistance value (ohms) is divided by 1000 to convert it into kilo-ohms
 	}
 
 

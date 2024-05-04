@@ -7,7 +7,7 @@
  * 
  * @author Cassidy Fernandez, Dominic Syd Aldas, Joshua Macatunao, Rafael Lafuente
  * 
- * @version 29/03/24
+ * @version 31/03/24
  */
 
 import java.util.Scanner;
@@ -37,7 +37,7 @@ public class NonVerticalStraightLines {
 		while(true) {
 			System.out.print("Select the form that you would like to convert to slope-intercept\n"
 					 + "(1) Two-point form (you know the points on the line)\n"
-					 + "(2) Point-slope form (you know the line's slope and one point\n"
+					 + "(2) Point-slope form (you know the line's slope and one point)\n"
 					 + "=> ");
 			try {
 				choice = in.nextInt();
@@ -70,15 +70,16 @@ public class NonVerticalStraightLines {
     	while(true) {
 			try {
 				// Getting value for first point
-		    	System.out.println("Enter the x-y coordinates of the first point separated by a space:");
+		    	System.out.print("Enter the x-y coordinates of the first point separated by a space => ");
 		    	for (int i = 0; i < 2; i++) {
 		  			point1[i] = in.nextInt();
 		   	 	}
 				// Getting value for second point
-		    	System.out.println("Enter the x-y coordinates of the second point separated by a space:");
+		    	System.out.print("Enter the x-y coordinates of the second point separated by a space => ");
 		    	for (int i = 0; i < 2; i++) {
 					point2[i] = in.nextInt();
 		    	}
+		    	System.out.println();	
 
 		    	// Returning a multidimensional array that contains the array point 1 and 2
 		   		return new int[][] {point1, point2};
@@ -104,14 +105,15 @@ public class NonVerticalStraightLines {
 			try {
 				System.out.print("Enter the slope => ");
 				double slope = in.nextDouble();
-				System.out.println("Enter the x-y coordinates of the point separated by a space => "); 	
+				System.out.print("Enter the x-y coordinates of the point separated by a space => "); 	
 			    double xCoordinate = in.nextDouble();
 				double yCoordinate = in.nextDouble();
+				System.out.println();	
 
 				return new double[] {slope, xCoordinate, yCoordinate}; // Returning slope and x-y coordinates of the point here
 			} catch (Exception err) {
 				in.next(); // string buffer here to avoid infinite loop
-				System.err.println("\nPlease input a valid double value!");
+				System.err.println("\nPlease input a valid value!");
 				System.err.println(err + "\n");
 			}
 		} 
@@ -130,7 +132,7 @@ public class NonVerticalStraightLines {
 	 */
 	public static double[] slopeInterceptFromTwoPoints(int x1, int y1, int x2, int y2) {
 		// Getting the slope
-		double m = (y2 - y1) / (x2 - x1);
+		double m = (double)(y2 - y1) / (x2 - x1);
 
 		// Getting the y-intercept
 		double b = interceptFromPointSlope(x1, y1, m);
@@ -138,7 +140,7 @@ public class NonVerticalStraightLines {
 		return new double[] {m, b}; // Returning slope and y-intercept here
 	}
 
-	// Dom
+
 	/**
 	 * This method takes three input parameters, the x-y coordinates of one point and the 
 	 * slope, and returns as the function value the y-intercept.
@@ -179,10 +181,11 @@ public class NonVerticalStraightLines {
 		System.out.println("Two-point form");
 		System.out.println("     (" + String.format("%.2f", y2) + " - " + String.format("%.2f", y1) + ")");
 		System.out.println("m = ----------------");
-		System.out.println("     (" + String.format("%.2f", x2) + " - " + String.format("%.2f", x1) + ")");	
+		System.out.println("     (" + String.format("%.2f", x2) + " - " + String.format("%.2f", x1) + ")");
+		System.out.println();	
 	}
 
-	// Raf
+
 	/**
 	 * This method takes three input parameters, the x-y coordinates of one point and the slope, 
 	 * and displays the point-slope line equation with a heading.
@@ -192,14 +195,13 @@ public class NonVerticalStraightLines {
 	 * @param m This is the slope of the point and the third parameter for displayPointSlope
 	 */
 	public static void displayPointSlope(double x, double y, double m) {
-		// TODO: Implement the same format as the case study guide here
-		/*
-			Point-slope form
-			y – 1.00 = 4.20 (x – 1.00)
-		*/
+		// Displaying Point-Slope form
+		System.out.println("Point-Slope form");
+     	System.out.println("y - " + String.format("%.2f",x)+ " = " + String.format("%.2f",m)+ " (x - " +String.format("%.2f",y)+ ")");
+     	System.out.println();
 	}
 
-	// Dom
+
 	/**
 	 * This method takes two input parameters, the slope and y-intercept,
 	 * and displays the slope-intercept line equation with a heading.
@@ -211,6 +213,7 @@ public class NonVerticalStraightLines {
 		// Displaying the slope-intercept form
 		System.out.println("Slope-intercept form");
 		System.out.println("y = " + String.format("%.2f", m) + "x + " + String.format("%.2f", b));
+		System.out.println();	
 	}
 
 
@@ -253,12 +256,12 @@ public class NonVerticalStraightLines {
 					 Passing the actual paramaters to the slopeInterceptFromTwoPoints function
 					 and storing it in a variable to be used in displaying the result
 					*/
-					double[] slopeAndIntercept = slopeInterceptFromTwoPoints(xOfPoint1, yOfPoint1, xOfPoint2, yOfPoint1);
+					double[] slopeAndIntercept = slopeInterceptFromTwoPoints(xOfPoint1, yOfPoint1, xOfPoint2, yOfPoint2);
 					slope = slopeAndIntercept[0];
 					intercept = slopeAndIntercept[1];
 
 					// Displaying the results by calling the displayTwoPoints and displaySlopeIntercept methods
-					diplayTwoPoints(xOfPoint1, yOfPoint1, xOfPoint2, yOfPoint1);
+					diplayTwoPoints(xOfPoint1, yOfPoint1, xOfPoint2, yOfPoint2);
 					displaySlopeIntercept(slope, intercept);
 					System.out.println();
 					break;
@@ -272,9 +275,10 @@ public class NonVerticalStraightLines {
 
 					// Getting the values of each variables
 					pointAndSlope = getPointSlope();	// Calling the getPointSlope method here
-					xCoordinate = pointAndSlope[0];
-					yCoordinate = pointAndSlope[1];
-					slope = pointAndSlope[2];
+					slope = pointAndSlope[0];
+					xCoordinate = pointAndSlope[1];
+					yCoordinate = pointAndSlope[2];
+					
 
 					/*
 					 Passing the actual paramaters to the interceptFromPointSlope function
@@ -298,6 +302,7 @@ public class NonVerticalStraightLines {
 				System.out.println("Do another conversion (Y or N) => ");
 				answer = in.next().charAt(0);
 				answer = Character.toUpperCase(answer);
+				System.out.println();
 				if(answer == 'Y') {
 					break;
 				} else if(answer == 'N') {
@@ -308,7 +313,5 @@ public class NonVerticalStraightLines {
 				}
 			}
 		} while(answer != 'N');
-
-
 	}
 }
