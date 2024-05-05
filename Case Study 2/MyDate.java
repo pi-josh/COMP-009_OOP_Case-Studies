@@ -144,7 +144,7 @@ public class MyDate {
 	/**
 	 * This method is used to set the date once validated
 	 * by the isValidDate method. Otherwise,
-	 * it willthrow an exception.
+	 * it will throw an exception.
 	 * 
 	 * @param year  Represents the year of the date.
 	 * @param month Represents the month of the year.
