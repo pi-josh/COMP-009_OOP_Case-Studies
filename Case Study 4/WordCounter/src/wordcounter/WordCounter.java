@@ -35,11 +35,11 @@ public class WordCounter extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         jOptionPane = new javax.swing.JOptionPane();
+        characterCountOutput = new javax.swing.JLabel();
+        wordCountOutput = new javax.swing.JLabel();
+        paragraphCountOutput = new javax.swing.JLabel();
         titleLbl = new javax.swing.JButton();
         counterBtn = new javax.swing.JButton();
-        characterCountOutput = new javax.swing.JTextField();
-        wordCountOutput = new javax.swing.JTextField();
-        paragraphCountOutput = new javax.swing.JTextField();
         characterCountLbl = new javax.swing.JLabel();
         wordCountLbl = new javax.swing.JLabel();
         paragraphCountLbl = new javax.swing.JLabel();
@@ -51,9 +51,30 @@ public class WordCounter extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTextArea2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 0, 0));
+        addWindowStateListener(new java.awt.event.WindowStateListener() {
+            public void windowStateChanged(java.awt.event.WindowEvent evt) {
+                formWindowStateChanged(evt);
+            }
+        });
+
+        characterCountOutput.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        characterCountOutput.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        characterCountOutput.setText("0");
+        characterCountOutput.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        wordCountOutput.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        wordCountOutput.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        wordCountOutput.setText("0");
+        wordCountOutput.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        paragraphCountOutput.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        paragraphCountOutput.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        paragraphCountOutput.setText("0");
+        paragraphCountOutput.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         titleLbl.setBackground(new java.awt.Color(255, 255, 255));
-        titleLbl.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        titleLbl.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         titleLbl.setText("Welcome to Word Counter!");
         titleLbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.darkGray, null, null));
         titleLbl.addActionListener(new java.awt.event.ActionListener() {
@@ -62,7 +83,7 @@ public class WordCounter extends javax.swing.JFrame {
             }
         });
 
-        counterBtn.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        counterBtn.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
         counterBtn.setText("Count Here!");
         counterBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.darkGray, null, null));
         counterBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -71,39 +92,22 @@ public class WordCounter extends javax.swing.JFrame {
             }
         });
 
-        characterCountOutput.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        characterCountOutput.setText("0");
-        characterCountOutput.setEnabled(false);
-        characterCountOutput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                characterCountOutputActionPerformed(evt);
-            }
-        });
-
-        wordCountOutput.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        wordCountOutput.setText("0");
-        wordCountOutput.setEnabled(false);
-
-        paragraphCountOutput.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        paragraphCountOutput.setText("0");
-        paragraphCountOutput.setEnabled(false);
-
-        characterCountLbl.setBackground(new java.awt.Color(204, 204, 204));
-        characterCountLbl.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        characterCountLbl.setBackground(javax.swing.UIManager.getDefaults().getColor("Label.foreground"));
+        characterCountLbl.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         characterCountLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         characterCountLbl.setLabelFor(characterCountOutput);
         characterCountLbl.setText("Number of Characters: ");
         characterCountLbl.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)));
 
-        wordCountLbl.setBackground(new java.awt.Color(204, 204, 204));
-        wordCountLbl.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        wordCountLbl.setBackground(javax.swing.UIManager.getDefaults().getColor("Label.foreground"));
+        wordCountLbl.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         wordCountLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         wordCountLbl.setLabelFor(wordCountOutput);
         wordCountLbl.setText("Number of Words: ");
         wordCountLbl.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)));
 
-        paragraphCountLbl.setBackground(new java.awt.Color(204, 204, 204));
-        paragraphCountLbl.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        paragraphCountLbl.setBackground(javax.swing.UIManager.getDefaults().getColor("Label.foreground"));
+        paragraphCountLbl.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         paragraphCountLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         paragraphCountLbl.setLabelFor(paragraphCountOutput);
         paragraphCountLbl.setText("Number of Paragraphs: ");
@@ -111,6 +115,7 @@ public class WordCounter extends javax.swing.JFrame {
 
         inputBox.setBackground(new java.awt.Color(204, 204, 255));
         inputBox.setColumns(20);
+        inputBox.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         inputBox.setLineWrap(true);
         inputBox.setRows(1000);
         inputBox.setWrapStyleWord(true);
@@ -121,66 +126,61 @@ public class WordCounter extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(paragraphCountLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(wordCountLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(characterCountLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(characterCountOutput)
-                    .addComponent(wordCountOutput, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(paragraphCountOutput, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(110, 110, 110))
             .addGroup(layout.createSequentialGroup()
-                .addGap(309, 309, 309)
+                .addGap(320, 320, 320)
                 .addComponent(counterBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(320, 320, 320))
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jScrollPane1)
-                .addGap(52, 52, 52))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(219, 219, 219)
-                .addComponent(titleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
-                .addGap(219, 219, 219))
+                .addGap(220, 220, 220)
+                .addComponent(titleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
+                .addGap(220, 220, 220))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(wordCountLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(paragraphCountLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(characterCountLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(characterCountOutput, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(wordCountOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(paragraphCountOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(110, 110, 110))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addComponent(titleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(counterBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(characterCountLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(characterCountOutput, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
+                .addComponent(counterBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(wordCountOutput, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(characterCountOutput, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                    .addComponent(characterCountLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(wordCountOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(wordCountLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(paragraphCountOutput, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(paragraphCountOutput, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
                     .addComponent(paragraphCountLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(33, 33, 33))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void characterCountOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_characterCountOutputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_characterCountOutputActionPerformed
-
     private void counterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_counterBtnActionPerformed
         // TODO add your handling code here:
         // Declaration of counter variables
-        int charCount = 0, wordCount = 0;
+        int charCount = 0, wordCount = 0, paragraphCount = 0;
         
         // Get the input text
         String text = inputBox.getText();
@@ -189,19 +189,34 @@ public class WordCounter extends javax.swing.JFrame {
         if(text.length() == 0) {
             JOptionPane.showMessageDialog(this, "Please input something!");
         } else {
-            // Count the character/s, word/s, and paragraph/s
+            // Count the character/s, word/s
             charCount = text.length();
             wordCount = text.split("\\s+").length;
+            
+            // Normalize line endings to ensure consistent counting
+            text = text.replaceAll("\\r+", "\n");
+
+            // Split into paragraphs based on two or more consecutive newlines
+            String[] paragraphs = text.split("\n{2,}");
+            
+            // Count paragraphs
+            paragraphCount = paragraphs.length;
         }
         
         // Display the counts
         characterCountOutput.setText(String.valueOf(charCount));
-        wordCountOutput.setText(String.valueOf(wordCount));     
+        wordCountOutput.setText(String.valueOf(wordCount));
+        paragraphCountOutput.setText(String.valueOf(paragraphCount));     
     }//GEN-LAST:event_counterBtnActionPerformed
 
     private void titleLblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleLblActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_titleLblActionPerformed
+
+    private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowStateChanged
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_formWindowStateChanged
 
     /**
      * @param args the command line arguments
@@ -241,7 +256,7 @@ public class WordCounter extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel characterCountLbl;
-    private javax.swing.JTextField characterCountOutput;
+    private javax.swing.JLabel characterCountOutput;
     private javax.swing.JButton counterBtn;
     private javax.swing.JTextArea inputBox;
     private javax.swing.JOptionPane jOptionPane;
@@ -249,9 +264,9 @@ public class WordCounter extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JLabel paragraphCountLbl;
-    private javax.swing.JTextField paragraphCountOutput;
+    private javax.swing.JLabel paragraphCountOutput;
     private javax.swing.JButton titleLbl;
     private javax.swing.JLabel wordCountLbl;
-    private javax.swing.JTextField wordCountOutput;
+    private javax.swing.JLabel wordCountOutput;
     // End of variables declaration//GEN-END:variables
 }
