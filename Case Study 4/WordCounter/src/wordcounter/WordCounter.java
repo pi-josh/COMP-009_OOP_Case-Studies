@@ -13,6 +13,8 @@ import javax.swing.JOptionPane;
  * @author Fernandez, Cassidy
  * @author Lafuente, Rafael
  * @author Macatunao, Joshua
+ * 
+ * @version May 7, 2024
  */
 public class WordCounter extends javax.swing.JFrame {
 
