@@ -11,13 +11,19 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Administrator
+ * @author Aldas, Dominic Syd
+ * @author Fernandez, Cassidy
+ * @author Lafuente, Rafael
+ * @author Macatunao, Joshua
+ * 
+ * @version May 7, 2024
  */
 public class TicTacToeGame extends javax.swing.JFrame {
 
     private String startGame = "X";
     private int xCount = 0;
     private int oCount = 0;
+    private boolean hasWinner = false;
     
     /**
      * Creates new form TicTacToeGame
@@ -25,13 +31,15 @@ public class TicTacToeGame extends javax.swing.JFrame {
     public TicTacToeGame() {
         initComponents();
     }
-
+    
+    // This method tallies the score of both players
     private void gameScore(){
         playerxxx.setText(String.valueOf(xCount));
         playerooo.setText(String.valueOf(oCount));
     }  
-    
-    private void choose_a_Player(){
+   
+    // This method initialize what should be played first
+    private void choosePlayer(){
         if(startGame.equalsIgnoreCase("X")){
             startGame = "O";
         } else {
@@ -39,221 +47,130 @@ public class TicTacToeGame extends javax.swing.JFrame {
         }
     }
     
+    // This method will prompt the players who won and count their score
+    private void winner(char player) {
+        if(player == 'X') {
+            JOptionPane.showMessageDialog(this, "Player X Won!", "CONGRATULATIONS!", JOptionPane.INFORMATION_MESSAGE);
+            xCount++;
+            gameScore();
+        } else {
+            JOptionPane.showMessageDialog(this, "Player O Won!", "CONGRATULATIONS!", 
+                    JOptionPane.INFORMATION_MESSAGE);
+            oCount++;
+            gameScore();
+        }
+        
+        hasWinner = true;
+    }
+    
+    // This method compiles the winning combination that a player have to achieve
     private void WinningGame(){
-        String b1 = txtbtn1.getText();
-        String b2 = txtbtn2.getText();
-        String b3 = txtbtn3.getText();
-        
-        String b4 = txtbtn4.getText();
-        String b5 = txtbtn5.getText();
-        String b6 = txtbtn6.getText();
-        
-        String b7 = txtbtn7.getText();
-        String b8 = txtbtn8.getText();
-        String b9 = txtbtn9.getText();
-        
-        //PLAYER X
-        
-        if(b1 == ("X") && b2 == ("X") && b3 == ("X")){
-            JOptionPane.showMessageDialog(this, "Player X Won!", "CONGRATULATIONS!", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            xCount++;
-            gameScore();
-            
-            txtbtn1.setBackground(Color.PINK);
-            txtbtn2.setBackground(Color.PINK);
-            txtbtn3.setBackground(Color.PINK);
+        if(!hasWinner) {
+            String b1 = txtbtn1.getText();
+            String b2 = txtbtn2.getText();
+            String b3 = txtbtn3.getText();
+
+            String b4 = txtbtn4.getText();
+            String b5 = txtbtn5.getText();
+            String b6 = txtbtn6.getText();
+
+            String b7 = txtbtn7.getText();
+            String b8 = txtbtn8.getText();
+            String b9 = txtbtn9.getText();
+
+            //PLAYER X
+
+            if(b1 == ("X") && b2 == ("X") && b3 == ("X")){
+                txtbtn1.setBackground(Color.PINK);
+                txtbtn2.setBackground(Color.PINK);
+                txtbtn3.setBackground(Color.PINK);
+                winner('X');
+            } else if(b4 == ("X") && b5 == ("X") && b6 == ("X")){
+                txtbtn4.setBackground(Color.PINK);
+                txtbtn5.setBackground(Color.PINK);
+                txtbtn6.setBackground(Color.PINK);
+                winner('X');
+            } else if(b7 == ("X") && b8 == ("X") && b9 == ("X")){
+                txtbtn7.setBackground(Color.PINK);
+                txtbtn8.setBackground(Color.PINK);
+                txtbtn9.setBackground(Color.PINK);
+                winner('X');
+            } else if(b1 == ("X") && b4 == ("X") && b7 == ("X")){
+                txtbtn1.setBackground(Color.PINK);
+                txtbtn4.setBackground(Color.PINK);
+                txtbtn7.setBackground(Color.PINK);
+                winner('X');
+            } else if(b2 == ("X") && b5 == ("X") && b8 == ("X")){
+                txtbtn2.setBackground(Color.PINK);
+                txtbtn5.setBackground(Color.PINK);
+                txtbtn8.setBackground(Color.PINK);
+                winner('X');
+            } else if(b3 == ("X") && b6 == ("X") && b9 == ("X")){
+                txtbtn3.setBackground(Color.PINK);
+                txtbtn6.setBackground(Color.PINK);
+                txtbtn9.setBackground(Color.PINK);
+                winner('X');
+            } else if(b1 == ("X") && b5 == ("X") && b9 == ("X")){
+                txtbtn1.setBackground(Color.PINK);
+                txtbtn5.setBackground(Color.PINK);
+                txtbtn9.setBackground(Color.PINK);
+                winner('X');
+            } else if(b3 == ("X") && b5 == ("X") && b7 == ("X")){
+                txtbtn3.setBackground(Color.PINK);
+                txtbtn5.setBackground(Color.PINK);
+                txtbtn7.setBackground(Color.PINK);
+                winner('X');
+            }
+
+            //PLAYER O
+
+            if(b1 == ("O") && b2 == ("O") && b3 == ("O")){
+                txtbtn1.setBackground(Color.YELLOW);
+                txtbtn2.setBackground(Color.YELLOW);
+                txtbtn3.setBackground(Color.YELLOW);
+                winner('O');
+            } else if(b4 == ("O") && b5 == ("O") && b6 == ("O")){
+                txtbtn4.setBackground(Color.YELLOW);
+                txtbtn5.setBackground(Color.YELLOW);
+                txtbtn6.setBackground(Color.YELLOW);
+                winner('O');
+            } else if(b4 == ("O") && b5 == ("O") && b6 == ("O")){
+                txtbtn4.setBackground(Color.YELLOW);
+                txtbtn5.setBackground(Color.YELLOW);
+                txtbtn6.setBackground(Color.YELLOW);
+                winner('O');
+            } else if(b7 == ("O") && b8 == ("O") && b9 == ("O")){
+                txtbtn7.setBackground(Color.YELLOW);
+                txtbtn8.setBackground(Color.YELLOW);
+                txtbtn9.setBackground(Color.YELLOW);
+                winner('O');
+            } else if(b1 == ("O") && b4 == ("O") && b7 == ("O")){
+                txtbtn1.setBackground(Color.YELLOW);
+                txtbtn4.setBackground(Color.YELLOW);
+                txtbtn7.setBackground(Color.YELLOW);
+                winner('O');
+            } else if(b2 == ("O") && b5 == ("O") && b8 == ("O")){
+                txtbtn2.setBackground(Color.YELLOW);
+                txtbtn5.setBackground(Color.YELLOW);
+                txtbtn8.setBackground(Color.YELLOW);
+                winner('O');
+            } else if(b3 == ("O") && b6 == ("O") && b9 == ("O")){
+                txtbtn3.setBackground(Color.YELLOW);
+                txtbtn6.setBackground(Color.YELLOW);
+                txtbtn9.setBackground(Color.YELLOW);
+                winner('O');
+            } else if(b1 == ("O") && b5 == ("O") && b9 == ("O")){
+                txtbtn1.setBackground(Color.YELLOW);
+                txtbtn5.setBackground(Color.YELLOW);
+                txtbtn9.setBackground(Color.YELLOW);
+                winner('O');
+            } else if(b3 == ("O") && b5 == ("O") && b7 == ("O")){
+                txtbtn3.setBackground(Color.YELLOW);
+                txtbtn5.setBackground(Color.YELLOW);
+                txtbtn7.setBackground(Color.YELLOW);
+                winner('O');
+            }
         }
-        
-        if(b4 == ("X") && b5 == ("X") && b6 == ("X")){
-            JOptionPane.showMessageDialog(this, "Player X Won!", "CONGRATULATIONS!", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            xCount++;
-            gameScore();
-            
-            txtbtn4.setBackground(Color.PINK);
-            txtbtn5.setBackground(Color.PINK);
-            txtbtn6.setBackground(Color.PINK);
-        }
-        
-        if(b4 == ("X") && b5 == ("X") && b6 == ("X")){
-            JOptionPane.showMessageDialog(this, "Player X Won!", "CONGRATULATIONS!", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            xCount++;
-            gameScore();
-            
-            txtbtn4.setBackground(Color.PINK);
-            txtbtn5.setBackground(Color.PINK);
-            txtbtn6.setBackground(Color.PINK);
-        }
-        
-        if(b7 == ("X") && b8 == ("X") && b9 == ("X")){
-            JOptionPane.showMessageDialog(this, "Player X Won!", "CONGRATULATIONS!", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            xCount++;
-            gameScore();
-            
-            txtbtn7.setBackground(Color.PINK);
-            txtbtn8.setBackground(Color.PINK);
-            txtbtn9.setBackground(Color.PINK);
-        }
-        
-        if(b1 == ("X") && b4 == ("X") && b7 == ("X")){
-            JOptionPane.showMessageDialog(this, "Player X Won!", "CONGRATULATIONS!", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            xCount++;
-            gameScore();
-            
-            txtbtn1.setBackground(Color.PINK);
-            txtbtn4.setBackground(Color.PINK);
-            txtbtn7.setBackground(Color.PINK);
-        }
-        
-        if(b2 == ("X") && b5 == ("X") && b8 == ("X")){
-            JOptionPane.showMessageDialog(this, "Player X Won!", "CONGRATULATIONS!", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            xCount++;
-            gameScore();
-            
-            txtbtn2.setBackground(Color.PINK);
-            txtbtn5.setBackground(Color.PINK);
-            txtbtn8.setBackground(Color.PINK);
-        }
-        
-        if(b3 == ("X") && b6 == ("X") && b9 == ("X")){
-            JOptionPane.showMessageDialog(this, "Player X Won!", "CONGRATULATIONS!", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            xCount++;
-            gameScore();
-            
-            txtbtn3.setBackground(Color.PINK);
-            txtbtn6.setBackground(Color.PINK);
-            txtbtn9.setBackground(Color.PINK);
-        }
-        
-        if(b1 == ("X") && b5 == ("X") && b9 == ("X")){
-            JOptionPane.showMessageDialog(this, "Player X Won!", "CONGRATULATIONS!", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            xCount++;
-            gameScore();
-            
-            txtbtn1.setBackground(Color.PINK);
-            txtbtn5.setBackground(Color.PINK);
-            txtbtn9.setBackground(Color.PINK);
-        }
-        
-        if(b3 == ("X") && b5 == ("X") && b7 == ("X")){
-            JOptionPane.showMessageDialog(this, "Player X Won!", "CONGRATULATIONS!", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            xCount++;
-            gameScore();
-            
-            txtbtn3.setBackground(Color.PINK);
-            txtbtn5.setBackground(Color.PINK);
-            txtbtn7.setBackground(Color.PINK);
-        }
-        
-        //PLAYER O
-        
-        if(b1 == ("O") && b2 == ("O") && b3 == ("O")){
-            JOptionPane.showMessageDialog(this, "Player O Won!", "CONGRATULATIONS!", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            oCount++;
-            gameScore();
-            
-            txtbtn1.setBackground(Color.YELLOW);
-            txtbtn2.setBackground(Color.YELLOW);
-            txtbtn3.setBackground(Color.YELLOW);
-        }
-        
-        if(b4 == ("O") && b5 == ("O") && b6 == ("O")){
-            JOptionPane.showMessageDialog(this, "Player O Won!", "CONGRATULATIONS!", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            oCount++;
-            gameScore();
-            
-            txtbtn4.setBackground(Color.YELLOW);
-            txtbtn5.setBackground(Color.YELLOW);
-            txtbtn6.setBackground(Color.YELLOW);
-        }
-        
-        if(b4 == ("O") && b5 == ("O") && b6 == ("O")){
-            JOptionPane.showMessageDialog(this, "Player O Won!", "CONGRATULATIONS!", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            oCount++;
-            gameScore();
-            
-            txtbtn4.setBackground(Color.YELLOW);
-            txtbtn5.setBackground(Color.YELLOW);
-            txtbtn6.setBackground(Color.YELLOW);
-        }
-        
-        if(b7 == ("O") && b8 == ("O") && b9 == ("O")){
-            JOptionPane.showMessageDialog(this, "Player O Won!", "CONGRATULATIONS!", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            oCount++;
-            gameScore();
-            
-            txtbtn7.setBackground(Color.YELLOW);
-            txtbtn8.setBackground(Color.YELLOW);
-            txtbtn9.setBackground(Color.YELLOW);
-        }
-        
-        if(b1 == ("O") && b4 == ("O") && b7 == ("O")){
-            JOptionPane.showMessageDialog(this, "Player O Won!", "CONGRATULATIONS!", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            oCount++;
-            gameScore();
-            
-            txtbtn1.setBackground(Color.YELLOW);
-            txtbtn4.setBackground(Color.YELLOW);
-            txtbtn7.setBackground(Color.YELLOW);
-        }
-        
-        if(b2 == ("O") && b5 == ("O") && b8 == ("O")){
-            JOptionPane.showMessageDialog(this, "Player O Won!", "CONGRATULATIONS!", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            oCount++;
-            gameScore();
-            
-            txtbtn2.setBackground(Color.YELLOW);
-            txtbtn5.setBackground(Color.YELLOW);
-            txtbtn8.setBackground(Color.YELLOW);
-        }
-        
-        if(b3 == ("O") && b6 == ("O") && b9 == ("O")){
-            JOptionPane.showMessageDialog(this, "Player O Won!", "CONGRATULATIONS!", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            oCount++;
-            gameScore();
-            
-            txtbtn3.setBackground(Color.YELLOW);
-            txtbtn6.setBackground(Color.YELLOW);
-            txtbtn9.setBackground(Color.YELLOW);
-        }
-        
-        if(b1 == ("O") && b5 == ("O") && b9 == ("O")){
-            JOptionPane.showMessageDialog(this, "Player O Won!", "CONGRATULATIONS!", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            oCount++;
-            gameScore();
-            
-            txtbtn1.setBackground(Color.YELLOW);
-            txtbtn5.setBackground(Color.YELLOW);
-            txtbtn9.setBackground(Color.YELLOW);
-        }
-        
-        if(b3 == ("O") && b5 == ("O") && b7 == ("O")){
-            JOptionPane.showMessageDialog(this, "Player O Won!", "CONGRATULATIONS!", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            oCount++;
-            gameScore();
-            
-            txtbtn3.setBackground(Color.YELLOW);
-            txtbtn5.setBackground(Color.YELLOW);
-            txtbtn7.setBackground(Color.YELLOW);
-        }
-        
     }
     
     /**
@@ -625,6 +542,7 @@ public class TicTacToeGame extends javax.swing.JFrame {
 
     private void txtbtnresetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbtnresetActionPerformed
         // TODO add your handling code here:
+        hasWinner = false;
         
         txtbtn1.setText(null);
         txtbtn2.setText(null);
@@ -649,7 +567,6 @@ public class TicTacToeGame extends javax.swing.JFrame {
         txtbtn7.setBackground(Color.BLACK);
         txtbtn8.setBackground(Color.BLACK);
         txtbtn9.setBackground(Color.BLACK);
-        
     }//GEN-LAST:event_txtbtnresetActionPerformed
 
     private void txtbtnexitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbtnexitActionPerformed
@@ -665,123 +582,137 @@ public class TicTacToeGame extends javax.swing.JFrame {
 
     private void txtbtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbtn2ActionPerformed
         // TODO add your handling code here:
+        if(!hasWinner) {
+            txtbtn2.setText(startGame);
         
-        txtbtn2.setText(startGame);
-        
-        if(startGame.equalsIgnoreCase("X")){
-            txtbtn2.setForeground(Color.RED);
-        } else {
-            txtbtn2.setForeground(Color.ORANGE);
+            if(startGame.equalsIgnoreCase("X")){
+                txtbtn2.setForeground(Color.RED);
+            } else {
+                txtbtn2.setForeground(Color.ORANGE);
+            }
+            choosePlayer();
+            WinningGame();
         }
-        choose_a_Player();
-        WinningGame();
     }//GEN-LAST:event_txtbtn2ActionPerformed
 
     private void txtbtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbtn3ActionPerformed
         // TODO add your handling code here:
-        
+        if(!hasWinner) {
         txtbtn3.setText(startGame);
         
-        if(startGame.equalsIgnoreCase("X")){
-            txtbtn3.setForeground(Color.RED);
-        } else {
-            txtbtn3.setForeground(Color.ORANGE);
+            if(startGame.equalsIgnoreCase("X")){
+                txtbtn3.setForeground(Color.RED);
+            } else {
+                txtbtn3.setForeground(Color.ORANGE);
+            }
+            choosePlayer();
+            WinningGame();
         }
-        choose_a_Player();
-        WinningGame();
     }//GEN-LAST:event_txtbtn3ActionPerformed
 
     private void txtbtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbtn1ActionPerformed
         // TODO add your handling code here:
+        if(!hasWinner) {
+            txtbtn1.setText(startGame);
         
-        txtbtn1.setText(startGame);
-        
-        if(startGame.equalsIgnoreCase("X")){
-            txtbtn1.setForeground(Color.RED);
-        } else {
-            txtbtn1.setForeground(Color.ORANGE);
+            if(startGame.equalsIgnoreCase("X")){
+                txtbtn1.setForeground(Color.RED);
+            } else {
+                txtbtn1.setForeground(Color.ORANGE);
+            }
+            choosePlayer();
+            WinningGame();
         }
-        choose_a_Player();
-        WinningGame();
     }//GEN-LAST:event_txtbtn1ActionPerformed
 
     private void txtbtn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbtn7ActionPerformed
         // TODO add your handling code here:
-        
-        txtbtn7.setText(startGame);
-        
-        if(startGame.equalsIgnoreCase("X")){
-            txtbtn7.setForeground(Color.RED);
-        } else {
-            txtbtn7.setForeground(Color.ORANGE);
+        if(!hasWinner) {
+            txtbtn7.setText(startGame);
+
+            if(startGame.equalsIgnoreCase("X")){
+                txtbtn7.setForeground(Color.RED);
+            } else {
+                txtbtn7.setForeground(Color.ORANGE);
+            }
+            choosePlayer();
+            WinningGame();
         }
-        choose_a_Player();
-        WinningGame();
     }//GEN-LAST:event_txtbtn7ActionPerformed
 
     private void txtbtn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbtn8ActionPerformed
         // TODO add your handling code here:
-        txtbtn8.setText(startGame);
-        
-        if(startGame.equalsIgnoreCase("X")){
-            txtbtn8.setForeground(Color.RED);
-        } else {
-            txtbtn8.setForeground(Color.ORANGE);
+        if(!hasWinner) {
+            txtbtn8.setText(startGame);
+
+            if(startGame.equalsIgnoreCase("X")){
+                txtbtn8.setForeground(Color.RED);
+            } else {
+                txtbtn8.setForeground(Color.ORANGE);
+            }
+            choosePlayer();
+            WinningGame();
         }
-        choose_a_Player();
-        WinningGame();
     }//GEN-LAST:event_txtbtn8ActionPerformed
 
     private void txtbtn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbtn4ActionPerformed
         // TODO add your handling code here:
-        txtbtn4.setText(startGame);
-        
-        if(startGame.equalsIgnoreCase("X")){
-            txtbtn4.setForeground(Color.RED);
-        } else {
-            txtbtn4.setForeground(Color.ORANGE);
+        if(!hasWinner) {
+            txtbtn4.setText(startGame);
+
+            if(startGame.equalsIgnoreCase("X")){
+                txtbtn4.setForeground(Color.RED);
+            } else {
+                txtbtn4.setForeground(Color.ORANGE);
+            }
+            choosePlayer();
+            WinningGame();
         }
-        choose_a_Player();
-        WinningGame();
     }//GEN-LAST:event_txtbtn4ActionPerformed
 
     private void txtbtn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbtn6ActionPerformed
         // TODO add your handling code here:
-        txtbtn6.setText(startGame);
-        
-        if(startGame.equalsIgnoreCase("X")){
-            txtbtn6.setForeground(Color.RED);
-        } else {
-            txtbtn6.setForeground(Color.ORANGE);
+        if(!hasWinner) {
+            txtbtn6.setText(startGame);
+
+            if(startGame.equalsIgnoreCase("X")){
+                txtbtn6.setForeground(Color.RED);
+            } else {
+                txtbtn6.setForeground(Color.ORANGE);
+            }
+            choosePlayer();
+            WinningGame();
         }
-        choose_a_Player();
-        WinningGame();
     }//GEN-LAST:event_txtbtn6ActionPerformed
 
     private void txtbtn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbtn9ActionPerformed
         // TODO add your handling code here:
-        txtbtn9.setText(startGame);
-        
-        if(startGame.equalsIgnoreCase("X")){
-            txtbtn9.setForeground(Color.RED);
-        } else {
-            txtbtn9.setForeground(Color.ORANGE);
+        if(!hasWinner) {
+            txtbtn9.setText(startGame);
+
+            if(startGame.equalsIgnoreCase("X")){
+                txtbtn9.setForeground(Color.RED);
+            } else {
+                txtbtn9.setForeground(Color.ORANGE);
+            }
+            choosePlayer();
+            WinningGame();
         }
-        choose_a_Player();
-        WinningGame();
     }//GEN-LAST:event_txtbtn9ActionPerformed
 
     private void txtbtn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbtn5ActionPerformed
         // TODO add your handling code here:
-        txtbtn5.setText(startGame);
-        
-        if(startGame.equalsIgnoreCase("X")){
-            txtbtn5.setForeground(Color.RED);
-        } else {
-            txtbtn5.setForeground(Color.ORANGE);
+        if(!hasWinner) {
+            txtbtn5.setText(startGame);
+
+            if(startGame.equalsIgnoreCase("X")){
+                txtbtn5.setForeground(Color.RED);
+            } else {
+                txtbtn5.setForeground(Color.ORANGE);
+            }
+            choosePlayer();
+            WinningGame();
         }
-        choose_a_Player();
-        WinningGame();
     }//GEN-LAST:event_txtbtn5ActionPerformed
 
     /**
