@@ -1,5 +1,5 @@
 /**
-* Telephone Directory - FILE HANDLING
+* Telephone Directory - DATABASES
 * A program that stores and updates a small telephone directory in a file.
 *
 * @author: Aldas, Dominic Syd
