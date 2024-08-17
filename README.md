@@ -1,7 +1,7 @@
 # <h1>COMP 009 - Object Oriented Programming [CASE STUDIES]</h1>
 
 ## Overview
-This repository is used for collaborating on our Case Studies in Object Oriented Programming (OOP) during midterms and finals [A.Y. 2023-2024].
+This repository is used for collaborating on our Case Studies in Java Object Oriented Programming (OOP) during midterms and finals [A.Y. 2023-2024].
 
 # Case Study Directory
 
